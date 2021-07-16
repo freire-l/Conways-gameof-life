@@ -2,8 +2,13 @@
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
+#include "grid.h"
 
-int main() {
+    int Cell::_height = 640/16;
+    int Cell::_width = 640/16;
+
+//main compatible with multiple SDL platforms
+int main( int argc, char* args[] ) {
   constexpr std::size_t kFramesPerSecond{60};
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
   constexpr std::size_t kScreenWidth{640};
@@ -13,10 +18,20 @@ int main() {
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  Game game(kGridWidth, kGridHeight);
-  game.Run(controller, renderer, kMsPerFrame);
-  std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << game.GetScore() << "\n";
-  std::cout << "Size: " << game.GetSize() << "\n";
+  //Game game(kGridWidth, kGridHeight);
+
+    //int Cell::_height = _size_grid/_num_cells;
+    //int Cell::_width = _size_grid/_num_cells;
+
+
+  std::cout<<"one"<<std::endl;
+  Grid grid(16,640);
+  std::cout<<"one"<<std::endl;
+  grid.Run(controller, renderer);
+  std::cout<<"two"<<std::endl;
+  //game.Run(controller, renderer, kMsPerFrame);
+  //std::cout << "Game has terminated successfully!\n";
+  //std::cout << "Score: " << game.GetScore() << "\n";
+  //std::cout << "Size: " << game.GetSize() << "\n";
   return 0;
 }
