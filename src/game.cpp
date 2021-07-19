@@ -2,6 +2,70 @@
 #include <iostream>
 #include "SDL.h"
 
+Game::Game(int size_grid): _size_grid(size_grid){
+  _actual_grid = new Grid(_num_cells, _size_grid, _first_cell);
+  _next_grid   = new Grid(_num_cells, _size_grid, _first_cell);
+}
+
+void Game::Update_next_grid(){
+      auto point = _next_grid->_the_grid;
+      for (auto i : _actual_grid->_the_grid){
+        //count live neighbors of actual "i"
+        int sum = _actual_grid->Count_Nhbr(i);
+
+        //update value of next "point"
+        //conditions to game of life
+        //point->
+      }
+
+}
+
+void Game::Run(Controller const &controller, Renderer &renderer){
+    bool is_running = true;
+    Uint32 title_timestamp = SDL_GetTicks();
+    Uint32 frame_start;
+    Uint32 frame_end;
+    Uint32 frame_duration;
+    int frame_count = 0;
+
+    Uint32 target_refresh = 1024;    
+
+
+    while (is_running) {
+  
+      frame_start = SDL_GetTicks();
+  
+      // Input, Update, Render - the main game loop.
+
+      //controller.HandleInput2(is_running, _the_grid, first_x, first_y, cells_displayed, target_refresh);
+      controller.HandleInput2(is_running, _actual_grid, target_refresh);
+      //Update();
+      renderer.Render2(_actual_grid);
+
+      frame_end = SDL_GetTicks();
+
+      // Keep track of how long each loop through the input/update/render cycle
+      // takes.
+      frame_count++;
+      frame_duration = frame_end - frame_start;
+
+      // After every second, update the window title.
+      if (frame_end - title_timestamp >= target_refresh) {
+        //update next_grid
+        Update_next_grid();
+        //make next grid the actual grid
+        frame_count = 0;
+        title_timestamp = frame_end;
+      }
+    }
+}
+
+
+
+//*********************************************************************
+//*********************************************************************
+
+/*
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
@@ -85,3 +149,5 @@ void Game::Update() {
 
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
+
+*/

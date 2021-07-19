@@ -5,7 +5,31 @@
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
-#include "snake.h"
+#include "cell.h"
+//#include "snake.h"
+
+class Game {
+ public:
+  Game(int size_grid);
+  void Run(Controller const &controller, Renderer &renderer);
+  void Update_next_grid();
+
+ private:
+  //std::vector<Cell*>* _actual_grid;
+  //std::vector<Cell*>* _next_grid;
+  Grid* _actual_grid;
+  Grid* _next_grid;
+
+  //******* Grid drivers ********
+  const int _num_cells = 16;
+  int _first_cell = 0;
+  //******* Grid drivers ********  
+
+  int _size_grid;
+  //const int _size_grid = 640;
+};
+
+/*
 
 class Game {
  public:
@@ -29,5 +53,6 @@ class Game {
   void PlaceFood();
   void Update();
 };
+*/
 
 #endif

@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "snake.h"
 #include "cell.h"
+#include "grid.h"
 
 class Renderer{
  public:
@@ -14,9 +15,10 @@ class Renderer{
 
   void Render(Snake const snake, SDL_Point const &food);
   //void Render2(Cell* cell);
-  void Render2(std::vector<Cell*> grid);
+  //void Render2(std::vector<Cell*> grid, int &limit_x, int &limit_y,int &cells_displayed);
+  void Render2(Grid* grid);
 
-  void DrawCell(Cell* cell);
+  void DrawCell(Cell* cell, int &first_x, int &first_y);
   void UpdateWindowTitle(int score, int fps);
 
  private:

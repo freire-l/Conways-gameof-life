@@ -12,11 +12,18 @@
             _is_alive = false;
         }*/
 
-        Cell::Cell(int x, int y){
+        Cell::Cell(int x, int y, int index){
             _pos.x = x;
             _pos.y = y;
 
+            if((x==y)||((x+y)==15))
+            _is_alive = true;
+            else
             _is_alive = false;
+
+            _index = index;
+
+            //_next_life = false;
         }
 
         void Cell::setter_Pos(int x, int y){
@@ -24,34 +31,36 @@
             _pos.y = y;
 
         }
-        void Cell::handleEvent(SDL_Event* e){
+        void Cell::handleEvent(SDL_Event* e, int first_x, int first_y){
             //If mouse event happened
             if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP )
             {
                 //Get mouse position
                 int x, y;
                 SDL_GetMouseState( &x, &y );
+                int cell_x=((_pos.x)-first_x)*(_width);
+                int cell_y=((_pos.y)-first_y)*(_height);
 
                 //Check if mouse is in button
                 bool inside = true;
 
                 //Mouse is left of the button
-                if( x < _pos.x )
+                if( x < cell_x )
                 {
                     inside = false;
                 }
                 //Mouse is right of the button
-                else if( x > _pos.x + _width)
+                else if( x > cell_x+ _width)
                 {
                     inside = false;
                 }
                 //Mouse above the button
-                else if( y < _pos.y )
+                else if( y < cell_y )
                 {
                     inside = false;
                 }
                 //Mouse below the button
-                else if( y > _pos.y + _height)
+                else if( y > cell_y + _height)
                 {
                     inside = false;
                 }
@@ -73,7 +82,7 @@
                     
                         case SDL_MOUSEBUTTONDOWN:
                         //mCurrentSprite = BUTTON_SPRITE_MOUSE_DOWN;
-                        std::cout<<"centro click"<<std::endl;
+                        std::cout<<"centro click "<< "x: " <<_pos.x<<"  y: "<<_pos.y <<std::endl;
                         toggle_life();
                         break;
                         

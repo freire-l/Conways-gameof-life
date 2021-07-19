@@ -1,20 +1,23 @@
 #include <iostream>
+#include "utils.h"
+#include "grid.h"
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
-#include "grid.h"
 
-    int Cell::_height = 640/16;
-    int Cell::_width = 640/16;
+
+    //int Cell::_height = 640/16;
+    //int Cell::_width = 640/16;
+
+    int Cell::_height = kScreenHeight/initial_display_cell;
+    int Cell::_width = kScreenWidth/initial_display_cell;
+
+
+    //este 16 es el que puede variar seg[un el numero de celdas que quieras desplegar
 
 //main compatible with multiple SDL platforms
 int main( int argc, char* args[] ) {
-  constexpr std::size_t kFramesPerSecond{60};
-  constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
-  constexpr std::size_t kScreenWidth{640};
-  constexpr std::size_t kScreenHeight{640};
-  constexpr std::size_t kGridWidth{32};
-  constexpr std::size_t kGridHeight{32};
+
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
@@ -25,9 +28,12 @@ int main( int argc, char* args[] ) {
 
 
   std::cout<<"one"<<std::endl;
-  Grid grid(16,640);
+  //**********************Este 16 siempre debe ser el maximo
+  //Grid grid(16,640);
+  Game game(kScreenSize);
   std::cout<<"one"<<std::endl;
-  grid.Run(controller, renderer);
+  //grid.Run(controller, renderer);
+  game.Run(controller, renderer);
   std::cout<<"two"<<std::endl;
   //game.Run(controller, renderer, kMsPerFrame);
   //std::cout << "Game has terminated successfully!\n";

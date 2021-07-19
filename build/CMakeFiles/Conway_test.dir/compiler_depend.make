@@ -646,6 +646,7 @@ CMakeFiles/Conway_test.dir/src/controller.cpp.o: ../src/controller.cpp \
   /usr/include/c++/9/bits/stl_numeric.h \
   /usr/include/c++/9/pstl/glue_numeric_defs.h \
   /usr/include/c++/9/pstl/execution_defs.h \
+  ../src/grid.h \
   /usr/include/c++/9/iostream \
   /usr/include/c++/9/ostream \
   /usr/include/c++/9/ios \
@@ -983,6 +984,7 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o: ../src/game.cpp \
   ../src/controller.h \
   ../src/snake.h \
   ../src/cell.h \
+  ../src/grid.h \
   ../src/renderer.h \
   /usr/include/c++/9/iostream \
   /usr/include/c++/9/ostream \
@@ -1344,8 +1346,7 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o: ../src/grid.cpp \
   /usr/include/c++/9/pstl/execution_defs.h \
   ../src/controller.h \
   ../src/snake.h \
-  ../src/cell.h \
-  ../src/renderer.h
+  ../src/cell.h
 
 CMakeFiles/Conway_test.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/stdc-predef.h \
@@ -1522,29 +1523,9 @@ CMakeFiles/Conway_test.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/9/bits/ostream.tcc \
   /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
-  ../src/controller.h \
-  ../src/snake.h \
-  /usr/include/c++/9/vector \
-  /usr/include/c++/9/bits/stl_construct.h \
-  /usr/include/c++/9/bits/stl_uninitialized.h \
-  /usr/include/c++/9/utility \
-  /usr/include/c++/9/bits/stl_relops.h \
-  /usr/include/c++/9/bits/stl_vector.h \
-  /usr/include/c++/9/bits/stl_bvector.h \
-  /usr/include/c++/9/bits/vector.tcc \
-  /usr/include/SDL2/SDL.h \
-  /usr/include/SDL2/SDL_main.h \
-  /usr/include/SDL2/SDL_stdinc.h \
-  /usr/include/SDL2/SDL_config.h \
-  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
-  /usr/include/SDL2/SDL_platform.h \
-  /usr/include/SDL2/begin_code.h \
-  /usr/include/SDL2/close_code.h \
-  /usr/include/c++/9/stdlib.h \
-  /usr/include/string.h \
-  /usr/include/strings.h \
-  /usr/include/inttypes.h \
-  /usr/include/c++/9/math.h \
+  ../src/utils.h \
+  ../src/grid.h \
+  /usr/include/c++/9/random \
   /usr/include/c++/9/cmath \
   /usr/include/math.h \
   /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -1569,6 +1550,35 @@ CMakeFiles/Conway_test.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/9/tr1/poly_hermite.tcc \
   /usr/include/c++/9/tr1/poly_laguerre.tcc \
   /usr/include/c++/9/tr1/riemann_zeta.tcc \
+  /usr/include/c++/9/bits/random.h \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/bits/stl_construct.h \
+  /usr/include/c++/9/bits/stl_uninitialized.h \
+  /usr/include/c++/9/utility \
+  /usr/include/c++/9/bits/stl_relops.h \
+  /usr/include/c++/9/bits/stl_vector.h \
+  /usr/include/c++/9/bits/stl_bvector.h \
+  /usr/include/c++/9/bits/vector.tcc \
+  /usr/include/c++/9/bits/uniform_int_dist.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/opt_random.h \
+  /usr/include/c++/9/bits/random.tcc \
+  /usr/include/c++/9/numeric \
+  /usr/include/c++/9/bits/stl_numeric.h \
+  /usr/include/c++/9/pstl/glue_numeric_defs.h \
+  /usr/include/c++/9/pstl/execution_defs.h \
+  /usr/include/SDL2/SDL.h \
+  /usr/include/SDL2/SDL_main.h \
+  /usr/include/SDL2/SDL_stdinc.h \
+  /usr/include/SDL2/SDL_config.h \
+  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
+  /usr/include/SDL2/SDL_platform.h \
+  /usr/include/SDL2/begin_code.h \
+  /usr/include/SDL2/close_code.h \
+  /usr/include/c++/9/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/inttypes.h \
+  /usr/include/c++/9/math.h \
   /usr/lib/gcc/x86_64-linux-gnu/9/include/float.h \
   /usr/include/SDL2/SDL_assert.h \
   /usr/include/SDL2/SDL_atomic.h \
@@ -1672,19 +1682,11 @@ CMakeFiles/Conway_test.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/SDL2/SDL_system.h \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_version.h \
+  ../src/controller.h \
+  ../src/snake.h \
   ../src/cell.h \
-  /usr/include/c++/9/random \
-  /usr/include/c++/9/bits/random.h \
-  /usr/include/c++/9/bits/uniform_int_dist.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/opt_random.h \
-  /usr/include/c++/9/bits/random.tcc \
-  /usr/include/c++/9/numeric \
-  /usr/include/c++/9/bits/stl_numeric.h \
-  /usr/include/c++/9/pstl/glue_numeric_defs.h \
-  /usr/include/c++/9/pstl/execution_defs.h \
   ../src/game.h \
-  ../src/renderer.h \
-  ../src/grid.h
+  ../src/renderer.h
 
 CMakeFiles/Conway_test.dir/src/renderer.cpp.o: ../src/renderer.cpp \
   /usr/include/stdc-predef.h \
@@ -1997,6 +1999,8 @@ CMakeFiles/Conway_test.dir/src/renderer.cpp.o: ../src/renderer.cpp \
   /usr/include/c++/9/bits/stl_numeric.h \
   /usr/include/c++/9/pstl/glue_numeric_defs.h \
   /usr/include/c++/9/pstl/execution_defs.h \
+  ../src/grid.h \
+  ../src/controller.h \
   /usr/include/c++/9/iostream \
   /usr/include/c++/9/ostream \
   /usr/include/c++/9/ios \
@@ -2354,13 +2358,13 @@ CMakeFiles/Conway_test.dir/src/snake.cpp.o: ../src/snake.cpp \
 
 ../src/main.cpp:
 
-../src/grid.h:
-
 ../src/grid.cpp:
 
 ../src/game.h:
 
 ../src/game.cpp:
+
+../src/grid.h:
 
 ../src/snake.h:
 
@@ -2669,6 +2673,8 @@ CMakeFiles/Conway_test.dir/src/snake.cpp.o: ../src/snake.cpp \
 /usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+../src/utils.h:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h:
 

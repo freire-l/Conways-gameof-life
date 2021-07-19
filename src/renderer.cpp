@@ -53,10 +53,15 @@ Renderer::~Renderer() {
   sdl_window = NULL;
   SDL_Quit();
 }
-void Renderer::DrawCell(Cell* cell){
+void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y){
   SDL_Texture* mTexture = NULL;
 
-  SDL_Rect draw_dims = { cell->_pos.x, cell->_pos.y, cell->_height,  cell->_width };
+  //SDL_Rect draw_dims = { cell->_pos.x, cell->_pos.y, cell->_height,  cell->_width };
+  int x = ((cell->_pos.x)-first_x)*(cell->_width);
+  int y = ((cell->_pos.y)-first_y)*(cell->_height);
+
+  SDL_Rect draw_dims = { x, y, cell->_height,  cell->_width };
+
 
   if(cell->_is_alive == true)
   {
@@ -74,28 +79,21 @@ void Renderer::DrawCell(Cell* cell){
 }
 
 //void Renderer::Render2(Cell* cell){
-void Renderer::Render2(std::vector<Cell*> grid){
+//void Renderer::Render2(std::vector<Cell*> grid, int &first_x, int &first_y, int &cells_displayed){
+void Renderer::Render2(Grid* grid){
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF);
 
-  /*
-  for(int i = 0 ; i<100 ;i++)
-  {
-      for(int j = 0 ; j<100 ;j++)
-      {
-        SDL_RenderDrawPoint(sdl_renderer,100+i,100+j);
+  //una variable que te diga cuales se van a desplegar de todas las que hay
+
+      for (auto i : grid->_the_grid){
+        if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed)))
+          if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed)))
+            DrawCell(i,grid->_first_x, grid->_first_y);
       }
-  }
-  */
-      for (auto i : grid)
-        DrawCell(i);
-  //DrawCell(cell);
-
-
-
     // Update Screen
   SDL_RenderPresent(sdl_renderer);
 

@@ -75,11 +75,136 @@ bool Controller::handleEventCoordinate(int x_cell, int y_cell, SDL_Event* e){
 */
 //void Controller::HandleInput2(bool &running, std::vector<std::vector<Cell*>> grid, Cell* cell) const {
 //void Controller::HandleInput2(bool &running, std::vector<std::vector<int>> grid, int num_cells, int size_grid, Cell* cell) const {
-void Controller::HandleInput2(bool &running, std::vector<Cell*> grid) const {
+//void Controller::HandleInput2(bool &running, Grid* grid, int &first_x, int &first_y, int &cells_displayed, Uint32 &target_refresh) const{
+void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh) const{
   SDL_Event e;
+  Uint32 lower_limit = 32;
+  Uint32 upper_limit = 4096;
+
   while (SDL_PollEvent(&e)) {
     if (e.type == SDL_QUIT) {
       running = false;
+    }else if (e.type == SDL_KEYDOWN) {
+      switch (e.key.keysym.sym) {
+        case SDLK_w:
+            //if(cells_displayed > 4)           
+            if(grid->_cells_displayed > 4)
+            {
+              grid->_first_x++;
+              grid->_first_y++;
+              grid->_cells_displayed=grid->_cells_displayed-2;
+              //Cell::_height = 640/(16-(first_y*2));
+              Cell::_height = 640/grid->_cells_displayed;
+              Cell::_width = Cell::_height;
+
+              //Cell::_width = 640/(16-(first_x*2));
+              std::cout<<"ZOOM IN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+            }
+          break;
+
+        case SDLK_s:
+            if(grid->_cells_displayed < grid->_max_zoom_out)
+            {
+              bool top_left = (grid->_first_x==0)&&(grid->_first_y==0);   //top left corner
+              bool bottom_right = (((grid->_first_x + grid->_cells_displayed) == grid->_num_cells)&&((grid->_first_y + grid->_cells_displayed) == grid->_num_cells)); //bottom right coner
+              bool bottom_left = ((grid->_first_x==0)&&((grid->_first_y + grid->_cells_displayed) == grid->_num_cells));   //bottom left corner
+              bool top_right = ((grid->_first_y==0)&&((grid->_first_x + grid->_cells_displayed) == grid->_num_cells));      //top right corner
+              bool top = ((grid->_first_y==0)&&((grid->_first_y + grid->_cells_displayed) != grid->_num_cells));
+              bool right = (((grid->_first_x + grid->_cells_displayed) == grid->_num_cells)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed) != grid->_num_cells));
+              bool bottom = (((grid->_first_y + grid->_cells_displayed) == grid->_num_cells)&&(grid->_first_x!=0)&&((grid->_first_x + grid->_cells_displayed) != grid->_num_cells));
+              bool left = ((grid->_first_x==0)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed) != grid->_num_cells));
+             
+              if(top_left){}
+              else if(top_right){
+                std::cout<<"three 3*** "<<std::endl;
+                grid->_first_x=grid->_first_x-2;
+              } else if (bottom_right){
+                std::cout<<"four 4*** "<<std::endl;
+                grid->_first_x=grid->_first_x-2;
+                grid->_first_y=grid->_first_y-2;
+              } else if(bottom_left){
+                std::cout<<"five 5*** "<<std::endl;
+                grid->_first_y=grid->_first_y-2;
+              } else if(top){
+                std::cout<<"five 6*** "<<std::endl;
+                grid->_first_x=grid->_first_x-1;
+              } else if(right){
+                std::cout<<"five 7*** "<<std::endl;
+                grid->_first_x=grid->_first_x-2;
+                grid->_first_y=grid->_first_y-1;
+              } else if(bottom){
+                std::cout<<"five 8*** "<<std::endl;
+                grid->_first_x=grid->_first_x-1;
+                grid->_first_y=grid->_first_y-2;
+
+              } else if(left){
+                std::cout<<"five 9*** "<<std::endl;
+                grid->_first_y=grid->_first_y-1;
+
+              }
+
+              else {
+                grid->_first_x--;
+                grid->_first_y--;
+              }
+
+              grid->_cells_displayed=grid->_cells_displayed+2;
+              //Cell::_height = 640/(16-(first_y*2));
+              Cell::_height = 640/grid->_cells_displayed;
+              Cell::_width = Cell::_height;
+              //Cell::_width = 640/(16-(first_x*2));
+                std::cout<<"ZOOM OUT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+            }
+          break;
+
+          case SDLK_RIGHT:
+            //std::cout<<"first: " << first_x << "  num_cells_displayed: " << (16-(first_x*2)) << "  result of formula: " << (first_x   + (16-(first_x*2))        ) << std::endl;
+            //if(first_x+(16-(first_x*2))<16){
+            //if(  (first_x   + (16-(first_x*2))        )   <     16){
+            if(  (grid->_first_x   + grid->_cells_displayed       )   <     grid->_num_cells){
+              grid->_first_x++;
+              std::cout<<"RIGHT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+            }
+
+          break;
+
+          case SDLK_LEFT:
+            if(grid->_first_x>0){
+              grid->_first_x--;
+              std::cout<<"LEFT***   First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+            }
+
+          break;
+
+          case SDLK_UP:
+            if(grid->_first_y>0){
+              grid->_first_y--;
+              std::cout<<"UP***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y<<" num_cells_displayed: " << grid->_cells_displayed << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+            }
+
+          break;
+
+          case SDLK_DOWN:
+            //if(first_y+(16-(first_y*2))<16){
+            //std::cout<<"first: " << first_x <<" num_cells_displayed: " << cells_displayed << "  result of formula: " << (first_y   + (16-(first_y*2))        ) << std::endl;
+            //if((first_y   + (16-(first_y*2))        )   <     16){
+            if((grid->_first_y   + grid->_cells_displayed        )   <     grid->_num_cells){
+              grid->_first_y++;
+              std::cout<<"DOWN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y<<" num_cells_displayed: " << grid->_cells_displayed << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+            }
+
+          break;
+
+          case SDLK_j:
+            if(target_refresh > lower_limit)
+              target_refresh = target_refresh/2;
+          break;
+
+          case SDLK_k:
+            if(target_refresh < upper_limit)
+              target_refresh = target_refresh*2;
+          break;
+      }
     }
     //cell->handleEvent(&e);
     /*for(auto &i : grid)
@@ -87,8 +212,23 @@ void Controller::HandleInput2(bool &running, std::vector<Cell*> grid) const {
       //grid[i][j] = handleEventCoordinate(i, j, &e);
         j->handleEvent(&e);
     */
-    for (auto i : grid)
+   //Una variable que te diga cuales se van a desplegar de todas las que hay
+    /*for (auto i : grid)
       i->handleEvent(&e);
+
+    */
+      /*
+      for (auto i : grid){
+        if((i->_pos.x>=first_x)&&(i->_pos.x<(16-first_x)))
+          if((i->_pos.y>=first_y)&&(i->_pos.y<(16-first_y)))
+            i->handleEvent(&e, first_x, first_y);
+      }
+      */
+      for (auto i : grid->_the_grid){
+        if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed)))
+          if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed)))
+            i->handleEvent(&e, grid->_first_x, grid->_first_y);
+      }
 
   }
 }
