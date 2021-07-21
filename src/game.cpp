@@ -11,11 +11,41 @@ void Game::Update_next_grid(){
       auto point = _next_grid->_the_grid;
       for (auto i : _actual_grid->_the_grid){
         //count live neighbors of actual "i"
+        //std::cout<<"G**"<<std::endl;
         int sum = _actual_grid->Count_Nhbr(i);
 
         //update value of next "point"
         //conditions to game of life
-        //point->
+        if((_actual_grid->_the_grid)[i->_index]->check_life()){
+          if(sum<=1 || sum>=4){
+            (_next_grid->_the_grid)[i->_index]->set_life(false);
+            //std::cout<<"A ******************************* ";
+            }
+          else if(sum == 2 || sum ==3){
+            (_next_grid->_the_grid)[i->_index]->set_life(true);
+            //std::cout<<"B ******************************** ";
+            }
+          else {
+            (_next_grid->_the_grid)[i->_index]->set_life(false);
+            //std::cout<<"F ******************************* ";
+          }
+
+        }else{
+          if(sum ==3){
+            (_next_grid->_the_grid)[i->_index]->set_life(true);
+            //std::cout<<"C *********************************** ";
+          } else{
+            (_next_grid->_the_grid)[i->_index]->set_life(false);
+            //std::cout<<"F ******************************* ";
+          }
+        }
+        //std::cout<<std::endl;
+        //std::cout<<"Cell Index: "<<i->_index<< "  X: "<< (i->get_x()) << "  Y: "<< (i->get_y()) << "  Neighb:" << sum << std::endl;
+        //if((_next_grid->_the_grid)[i->_index]->check_life())
+          //std::cout<<"La siguiente est[a viva"<<std::endl;
+        //else
+          //std::cout<<"La siguiente est[a muerta"<<std::endl;
+
       }
 
 }
@@ -38,7 +68,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       // Input, Update, Render - the main game loop.
 
       //controller.HandleInput2(is_running, _the_grid, first_x, first_y, cells_displayed, target_refresh);
-      controller.HandleInput2(is_running, _actual_grid, target_refresh);
+      controller.HandleInput2(is_running, _actual_grid, target_refresh, go, step);
       //Update();
       renderer.Render2(_actual_grid);
 
@@ -49,13 +79,34 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       frame_count++;
       frame_duration = frame_end - frame_start;
 
+      //std::cout<<"A**"<<std::endl;
       // After every second, update the window title.
-      if (frame_end - title_timestamp >= target_refresh) {
-        //update next_grid
-        Update_next_grid();
-        //make next grid the actual grid
-        frame_count = 0;
-        title_timestamp = frame_end;
+      if(go==true || step == true){
+          if ((frame_end - title_timestamp >= target_refresh) || (go == false && step == true)) {
+            //update next_grid
+            //std::cout<<"B**"<<std::endl;
+            Update_next_grid();
+            //make next grid the actual grid
+              //std::cout<<"C**"<<std::endl;
+            Grid* aux =  new Grid(0,0,0);
+            aux =  _actual_grid;
+              //std::cout<<"D**"<<std::endl;
+            _actual_grid = _next_grid;
+              //std::cout<<"E**"<<std::endl;
+            _next_grid = aux;
+              //std::cout<<"F**"<<std::endl;
+              aux = NULL;
+
+              delete(aux);
+
+            //delete(aux);
+
+            frame_count = 0;
+            title_timestamp = frame_end;
+
+          }
+              if (step == true)
+                step = false;
       }
     }
 }

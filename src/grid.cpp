@@ -18,25 +18,78 @@ int Grid::Count_Nhbr(Cell* the_cell){
   int sum = 0;
   auto x = (the_cell->_pos).x;
   auto y = (the_cell->_pos).y;
+  //std::cout<<"Vecinos: ";
   //count top left
   //if((((the_cell->_pos).x) > 0 )&&(((the_cell->_pos).y) > 0 )){
   if( x>0 && y>0 ){
-    if(_the_grid[(the_cell->_index)-_num_cells-1]->_is_alive == true)
-      sum++;
+    //std::cout<<"a**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)-_num_cells-1]->_is_alive == true){
+      //std::cout<<"TOp left ";
+        sum++;
+    }
+
   } 
   //count top
+  if(y>0){
+    //std::cout<<"b**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)-_num_cells]->_is_alive == true){
+      //std::cout<<"Top ";
+      sum++;   
+    } 
+  }
 
   //count top right
-
+  if( y>0 && x<(_num_cells-1) ){
+    //std::cout<<"c**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)-_num_cells+1]->_is_alive == true){
+      //std::cout<<"Top Right ";
+      sum++;
+    }
+  } 
   //count right
-
+  if(y<(_num_cells-1)){
+        //std::cout<<"d**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)+1]->_is_alive == true){
+      //std::cout<<"Right ";
+      sum++; 
+    }   
+  }
   //count bottom right
-
+  if(y<(_num_cells-1) && x<(_num_cells-1)){
+        //std::cout<<"e**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)+_num_cells+1]->_is_alive == true){
+      //std::cout<<"Bottom right ";
+      sum++;   
+    } 
+  }
   //count bottom
-
+  if(y<(_num_cells-1)){
+        //std::cout<<"f**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)+_num_cells]->_is_alive == true){
+      //std::cout<<"Bottom ";
+      sum++;    
+    }
+  }
   //count bottom left
-
+  if( x>0 && y<(_num_cells-1) ){
+        //std::cout<<"g**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)+_num_cells-1]->_is_alive == true){
+      //std::cout<<"Bottom left ";
+      sum++;
+    }
+  } 
   //count left
+  if(x>0){
+        //std::cout<<"h**"<<" x: "<<x<<" y: "<<y<<std::endl;
+    if(_the_grid[(the_cell->_index)-1]->_is_alive == true){
+      //std::cout<<"Left";
+      sum++; 
+       //std::cout<<"i**"<<std::endl;
+    }
+   
+  }
+
+  //std::cout<<std::endl;
 
   return sum;
 

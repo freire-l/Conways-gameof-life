@@ -17,8 +17,14 @@ class Cell{
         void handleEvent(SDL_Event* e, int first_x, int first_y);
 
         void toggle_life();
+        void set_life(bool value);
+        bool check_life();
+
+        int get_x();
+        int get_y();
 
         void render();
+
 
         static int _width;
         static int _height;

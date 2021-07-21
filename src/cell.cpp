@@ -16,9 +16,11 @@
             _pos.x = x;
             _pos.y = y;
 
+            /*
             if((x==y)||((x+y)==15))
             _is_alive = true;
             else
+            */
             _is_alive = false;
 
             _index = index;
@@ -31,6 +33,13 @@
             _pos.y = y;
 
         }
+
+        void Cell::set_life(bool value){ _is_alive = value;}
+        bool Cell::check_life(){return _is_alive;}
+
+        int Cell::get_x(){return _pos.x;}
+        int Cell::get_y(){return _pos.y;}
+
         void Cell::handleEvent(SDL_Event* e, int first_x, int first_y){
             //If mouse event happened
             if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP )

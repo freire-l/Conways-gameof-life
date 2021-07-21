@@ -27,14 +27,14 @@ int main( int argc, char* args[] ) {
     //int Cell::_width = _size_grid/_num_cells;
 
 
-  std::cout<<"one"<<std::endl;
+  //std::cout<<"one"<<std::endl;
   //**********************Este 16 siempre debe ser el maximo
   //Grid grid(16,640);
   Game game(kScreenSize);
-  std::cout<<"one"<<std::endl;
+  //std::cout<<"one"<<std::endl;
   //grid.Run(controller, renderer);
   game.Run(controller, renderer);
-  std::cout<<"two"<<std::endl;
+  //std::cout<<"two"<<std::endl;
   //game.Run(controller, renderer, kMsPerFrame);
   //std::cout << "Game has terminated successfully!\n";
   //std::cout << "Score: " << game.GetScore() << "\n";

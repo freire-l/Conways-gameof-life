@@ -25,6 +25,11 @@ class Game {
   int _first_cell = 0;
   //******* Grid drivers ********  
 
+
+  bool go = false;
+
+  bool step = false;
+
   int _size_grid;
   //const int _size_grid = 640;
 };

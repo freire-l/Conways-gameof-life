@@ -76,7 +76,7 @@ bool Controller::handleEventCoordinate(int x_cell, int y_cell, SDL_Event* e){
 //void Controller::HandleInput2(bool &running, std::vector<std::vector<Cell*>> grid, Cell* cell) const {
 //void Controller::HandleInput2(bool &running, std::vector<std::vector<int>> grid, int num_cells, int size_grid, Cell* cell) const {
 //void Controller::HandleInput2(bool &running, Grid* grid, int &first_x, int &first_y, int &cells_displayed, Uint32 &target_refresh) const{
-void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh) const{
+void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const{
   SDL_Event e;
   Uint32 lower_limit = 32;
   Uint32 upper_limit = 4096;
@@ -86,6 +86,18 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh)
       running = false;
     }else if (e.type == SDL_KEYDOWN) {
       switch (e.key.keysym.sym) {
+        case SDLK_RETURN:
+            if(go==true)
+              go=false;
+            else
+              go=true;
+          break;
+
+        case SDLK_m:
+            if(step==false)
+              step=true;
+
+          break;
         case SDLK_w:
             //if(cells_displayed > 4)           
             if(grid->_cells_displayed > 4)
@@ -114,7 +126,7 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh)
               bool bottom = (((grid->_first_y + grid->_cells_displayed) == grid->_num_cells)&&(grid->_first_x!=0)&&((grid->_first_x + grid->_cells_displayed) != grid->_num_cells));
               bool left = ((grid->_first_x==0)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed) != grid->_num_cells));
              
-              if(top_left){}
+              if(top_left){break;}
               else if(top_right){
                 std::cout<<"three 3*** "<<std::endl;
                 grid->_first_x=grid->_first_x-2;
