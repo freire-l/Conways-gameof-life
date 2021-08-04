@@ -3,8 +3,13 @@
 #include "SDL.h"
 
 Game::Game(int size_grid): _size_grid(size_grid){
-  _actual_grid = new Grid(_num_cells, _size_grid, _first_cell);
-  _next_grid   = new Grid(_num_cells, _size_grid, _first_cell);
+  //25 jul /*
+  //_actual_grid = new Grid(_num_cells, _size_grid, _first_cell);
+  //_next_grid   = new Grid(_num_cells, _size_grid, _first_cell);
+  //25jul */
+
+  _actual_grid = new Grid(_num_cells, _size_grid);
+  _next_grid   = new Grid(_num_cells, _size_grid);
 }
 
 void Game::Update_next_grid(){
@@ -88,7 +93,8 @@ void Game::Run(Controller const &controller, Renderer &renderer){
             Update_next_grid();
             //make next grid the actual grid
               //std::cout<<"C**"<<std::endl;
-            Grid* aux =  new Grid(0,0,0);
+            //25 jul //Grid* aux =  new Grid(0,0,0);
+            Grid* aux =  new Grid(0,0);
             aux =  _actual_grid;
               //std::cout<<"D**"<<std::endl;
             _actual_grid = _next_grid;

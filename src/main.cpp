@@ -9,8 +9,18 @@
     //int Cell::_height = 640/16;
     //int Cell::_width = 640/16;
 
-    int Cell::_height = kScreenHeight/initial_display_cell;
-    int Cell::_width = kScreenWidth/initial_display_cell;
+    //int Cell::_height = kScreenHeight/initial_display_cell;
+    //int Cell::_width = kScreenWidth/initial_display_cell;
+
+    int Grid::_cells_displayed = 40;
+
+    int Grid::_max_zoom_out = 52;
+
+    int Grid::_first_x = 0;
+    int Grid::_first_y = 0;
+
+    int Cell::_height = kScreenSize/initial_display_cell;
+    int Cell::_width = kScreenSize/initial_display_cell;
 
 
     //este 16 es el que puede variar seg[un el numero de celdas que quieras desplegar
@@ -19,7 +29,8 @@
 int main( int argc, char* args[] ) {
 
 
-  Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
+  //Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
+  Renderer renderer(kScreenSize, kScreenSize);
   Controller controller;
   //Game game(kGridWidth, kGridHeight);
 

@@ -21,7 +21,7 @@ class Game {
   Grid* _next_grid;
 
   //******* Grid drivers ********
-  const int _num_cells = 16;
+  const int _num_cells = 40;
   int _first_cell = 0;
   //******* Grid drivers ********  
 

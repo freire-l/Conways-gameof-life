@@ -10,20 +10,31 @@
 class Grid{
 
     public:
-        Grid(int num_cells, int size_grid, int first_cell);
+        //Grid(int num_cells, int size_grid, int first_cell);
+        Grid(int num_cells, int size_grid);
         int Count_Nhbr(Cell* the_cell); 
+
+//25 jul
+        static int _cells_displayed;
+
+        static int _max_zoom_out;
+
+        static int _first_x;
+        static int _first_y;
 
     private:
         std::vector<Cell*> _the_grid;
         int _size_grid;
         int _num_cells;
-
+/*25 jul
         int _cells_displayed = 16;
 
         int _max_zoom_out = 32;
 
         int _first_x;
         int _first_y;
+
+*/
 
 
         friend class Controller;

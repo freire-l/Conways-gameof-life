@@ -106,7 +106,8 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
               grid->_first_y++;
               grid->_cells_displayed=grid->_cells_displayed-2;
               //Cell::_height = 640/(16-(first_y*2));
-              Cell::_height = 640/grid->_cells_displayed;
+              //Cell::_height = 640/grid->_cells_displayed;
+              Cell::_height = grid->_size_grid/grid->_cells_displayed;
               Cell::_width = Cell::_height;
 
               //Cell::_width = 640/(16-(first_x*2));
@@ -162,7 +163,9 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
 
               grid->_cells_displayed=grid->_cells_displayed+2;
               //Cell::_height = 640/(16-(first_y*2));
-              Cell::_height = 640/grid->_cells_displayed;
+              //Cell::_height = 640/grid->_cells_displayed;
+              Cell::_height = grid->_size_grid/grid->_cells_displayed;
+              
               Cell::_width = Cell::_height;
               //Cell::_width = 640/(16-(first_x*2));
                 std::cout<<"ZOOM OUT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;

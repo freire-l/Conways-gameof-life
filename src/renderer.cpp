@@ -2,13 +2,19 @@
 #include <iostream>
 #include <string>
 
-Renderer::Renderer(const std::size_t screen_width,
+/*Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
                    const std::size_t grid_width, const std::size_t grid_height)
     : screen_width(screen_width),
       screen_height(screen_height),
       grid_width(grid_width),
-      grid_height(grid_height) {
+      grid_height(grid_height) {*/
+
+Renderer::Renderer(const std::size_t screen_width,
+                   const std::size_t screen_height
+                   )
+    : screen_width(screen_width),
+      screen_height(screen_height) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -16,7 +22,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // Create Window
-  sdl_window = SDL_CreateWindow("Test Cooooooooonway", SDL_WINDOWPOS_CENTERED,
+  sdl_window = SDL_CreateWindow("Conways Game of Life", SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
@@ -99,7 +105,7 @@ void Renderer::Render2(Grid* grid){
 
 
 }
-
+/*
 void Renderer::Render(Snake const snake, SDL_Point const &food) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
@@ -136,7 +142,7 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }
-
+*/
 void Renderer::UpdateWindowTitle(int score, int fps) {
   std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());

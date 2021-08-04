@@ -2,7 +2,8 @@
 #include "SDL.h"
 #include "grid.h"
 
-Grid::Grid(int num_cells, int size_grid, int first_cell): _num_cells(num_cells), _size_grid(size_grid), _first_x(first_cell) , _first_y(first_cell){
+//Grid::Grid(int num_cells, int size_grid, int first_cell): _num_cells(num_cells), _size_grid(size_grid), _first_x(first_cell) , _first_y(first_cell){
+Grid::Grid(int num_cells, int size_grid): _num_cells(num_cells), _size_grid(size_grid){
   int x;
   int y;
   _the_grid.reserve(_num_cells*_num_cells);
