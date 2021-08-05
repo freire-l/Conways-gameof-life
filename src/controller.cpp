@@ -78,6 +78,7 @@ bool Controller::handleEventCoordinate(int x_cell, int y_cell, SDL_Event* e){
 //void Controller::HandleInput2(bool &running, Grid* grid, int &first_x, int &first_y, int &cells_displayed, Uint32 &target_refresh) const{
 void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const{
   SDL_Event e;
+  //limits of speed
   Uint32 lower_limit = 32;
   Uint32 upper_limit = 4096;
 

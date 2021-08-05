@@ -10,7 +10,11 @@
 
 class Game {
  public:
+ ///
+  //Agosto 3
   Game(int size_grid);
+  //Game (int width_grid, int height_grid);
+///
   void Run(Controller const &controller, Renderer &renderer);
   void Update_next_grid();
 
@@ -21,8 +25,20 @@ class Game {
   Grid* _next_grid;
 
   //******* Grid drivers ********
+
+  ///
+    //Agosto 3
   const int _num_cells = 40;
   int _first_cell = 0;
+
+  /*
+  const int _num_cells_x = 60;
+  const int _num_cells_y = 40;
+
+  int _first_cell_x = 0;
+  int _first_cell_y = 0;
+  */
+  ///
   //******* Grid drivers ********  
 
 
@@ -30,7 +46,16 @@ class Game {
 
   bool step = false;
 
+///
+  //Agosto 3
   int _size_grid;
+
+  //int _width_grid;
+  //int _height_grid;
+
+///
+
+
   //const int _size_grid = 640;
 };
 

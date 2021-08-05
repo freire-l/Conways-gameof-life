@@ -3,6 +3,8 @@
 #include "grid.h"
 
 //Grid::Grid(int num_cells, int size_grid, int first_cell): _num_cells(num_cells), _size_grid(size_grid), _first_x(first_cell) , _first_y(first_cell){
+///
+  //Agosto 3
 Grid::Grid(int num_cells, int size_grid): _num_cells(num_cells), _size_grid(size_grid){
   int x;
   int y;
@@ -14,6 +16,20 @@ Grid::Grid(int num_cells, int size_grid): _num_cells(num_cells), _size_grid(size
       _the_grid.push_back(new Cell(x, y, i));
     }
 }
+/*
+Grid::Grid(int num_cells_x, int num_cells_y, width_grid, height_grid): _num_cells_x(num_cells_x), _num_cells_y(num_cells_y), _width_grid(width_grid), _height_grid(height_grid){
+
+  int x;
+  int y;
+  _the_grid.reserve(_num_cells_x*_num_cells_y);
+  for(int i = 0; i < (_num_cells_x*_num_cells_y); ++i)
+    {
+      x = (i%_num_cells_x);
+      y = (i/_num_cells_x);
+      _the_grid.push_back(new Cell(x, y, i));
+    }
+}*/
+///
 
 int Grid::Count_Nhbr(Cell* the_cell){
   int sum = 0;
@@ -25,6 +41,7 @@ int Grid::Count_Nhbr(Cell* the_cell){
   if( x>0 && y>0 ){
     //std::cout<<"a**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)-_num_cells-1]->_is_alive == true){
+    //Agosto 3 if(_the_grid[(the_cell->_index)-_num_cells_x-1]->_is_alive == true){
       //std::cout<<"TOp left ";
         sum++;
     }
@@ -34,6 +51,7 @@ int Grid::Count_Nhbr(Cell* the_cell){
   if(y>0){
     //std::cout<<"b**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)-_num_cells]->_is_alive == true){
+    //Agosto 3 if(_the_grid[(the_cell->_index)-_num_cells_x]->_is_alive == true){
       //std::cout<<"Top ";
       sum++;   
     } 
@@ -41,14 +59,17 @@ int Grid::Count_Nhbr(Cell* the_cell){
 
   //count top right
   if( y>0 && x<(_num_cells-1) ){
-    //std::cout<<"c**"<<" x: "<<x<<" y: "<<y<<std::endl;
+  //Agosto 3 if( y>0 && x<(_num_cells_x-1) ){
+        //std::cout<<"c**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)-_num_cells+1]->_is_alive == true){
-      //std::cout<<"Top Right ";
+    //Agosto 3 if(_the_grid[(the_cell->_index)-_num_cells_x+1]->_is_alive == true){
+          //std::cout<<"Top Right ";
       sum++;
     }
   } 
-  //count right
-  if(y<(_num_cells-1)){
+  //count right   ***************************This one is wrong, should be x < _num_cells-1
+  if(x<(_num_cells-1)){
+  //Agosto 3 if(x<(_num_cells_x-1)){
         //std::cout<<"d**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)+1]->_is_alive == true){
       //std::cout<<"Right ";
@@ -57,24 +78,30 @@ int Grid::Count_Nhbr(Cell* the_cell){
   }
   //count bottom right
   if(y<(_num_cells-1) && x<(_num_cells-1)){
+  //Agosto 3 if(y<(_num_cells_y-1) && x<(_num_cells_x-1)){
         //std::cout<<"e**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)+_num_cells+1]->_is_alive == true){
+    //Agosto 3 if(_the_grid[(the_cell->_index)+_num_cells_x+1]->_is_alive == true){
       //std::cout<<"Bottom right ";
       sum++;   
     } 
   }
   //count bottom
   if(y<(_num_cells-1)){
+  //Agosto 3 if(y<(_num_cells_y-1)){
         //std::cout<<"f**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)+_num_cells]->_is_alive == true){
+    //Agosto 3 if(_the_grid[(the_cell->_index)+_num_cells_x]->_is_alive == true){
       //std::cout<<"Bottom ";
       sum++;    
     }
   }
   //count bottom left
   if( x>0 && y<(_num_cells-1) ){
+  //Agosto 3 if( x>0 && y<(_num_cells_y-1) ){
         //std::cout<<"g**"<<" x: "<<x<<" y: "<<y<<std::endl;
     if(_the_grid[(the_cell->_index)+_num_cells-1]->_is_alive == true){
+    //Agosto 3 if(_the_grid[(the_cell->_index)+_num_cells_x-1]->_is_alive == true){
       //std::cout<<"Bottom left ";
       sum++;
     }

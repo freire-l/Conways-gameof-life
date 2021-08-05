@@ -2,6 +2,9 @@
 #include <iostream>
 #include "SDL.h"
 
+///
+
+  //Agosto 3
 Game::Game(int size_grid): _size_grid(size_grid){
   //25 jul /*
   //_actual_grid = new Grid(_num_cells, _size_grid, _first_cell);
@@ -11,6 +14,15 @@ Game::Game(int size_grid): _size_grid(size_grid){
   _actual_grid = new Grid(_num_cells, _size_grid);
   _next_grid   = new Grid(_num_cells, _size_grid);
 }
+
+/*
+Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_grid(height_grid){
+  _actual_grid = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
+  _next_grid   = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
+}
+*/
+
+///
 
 void Game::Update_next_grid(){
       auto point = _next_grid->_the_grid;

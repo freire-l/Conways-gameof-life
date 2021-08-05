@@ -15,7 +15,15 @@ class Grid{
         int Count_Nhbr(Cell* the_cell); 
 
 //25 jul
+
+///
+        //agosto 3
         static int _cells_displayed;
+
+        //static int _cells_displayed_x;
+        //static int _cells_displayed_y;
+
+///
 
         static int _max_zoom_out;
 
@@ -24,8 +32,21 @@ class Grid{
 
     private:
         std::vector<Cell*> _the_grid;
+
+///
+        //Agosto 3
         int _size_grid;
         int _num_cells;
+
+        /*
+        int _num_cells_x = 60;
+        int _num_cells_y = 40;
+
+        int _width_grid;
+        int _height_grid;
+        */
+///
+
 /*25 jul
         int _cells_displayed = 16;
 
