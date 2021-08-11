@@ -5,22 +5,20 @@
 ///
 
   //Agosto 3
+/*
 Game::Game(int size_grid): _size_grid(size_grid){
-  //25 jul /*
-  //_actual_grid = new Grid(_num_cells, _size_grid, _first_cell);
-  //_next_grid   = new Grid(_num_cells, _size_grid, _first_cell);
-  //25jul */
 
   _actual_grid = new Grid(_num_cells, _size_grid);
   _next_grid   = new Grid(_num_cells, _size_grid);
 }
+*/
 
-/*
+
 Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_grid(height_grid){
   _actual_grid = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
   _next_grid   = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
 }
-*/
+
 
 ///
 
@@ -106,7 +104,12 @@ void Game::Run(Controller const &controller, Renderer &renderer){
             //make next grid the actual grid
               //std::cout<<"C**"<<std::endl;
             //25 jul //Grid* aux =  new Grid(0,0,0);
-            Grid* aux =  new Grid(0,0);
+
+            ///Agosto 3
+            //Grid* aux =  new Grid(0,0);
+            Grid* aux =  new Grid(0,0,0,0);
+            ///
+
             aux =  _actual_grid;
               //std::cout<<"D**"<<std::endl;
             _actual_grid = _next_grid;

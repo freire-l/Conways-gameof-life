@@ -97,19 +97,21 @@ void Renderer::Render2(Grid* grid){
 
 ///
   //Agosto 3
+      /*
       for (auto i : grid->_the_grid){
         if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed)))
           if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed)))
             DrawCell(i,grid->_first_x, grid->_first_y);
       }
+      */
 
-      /*
+      
         for (auto i : grid->_the_grid){
         if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))
           if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))
             DrawCell(i,grid->_first_x, grid->_first_y);
       }
-      */
+      
 
 ///
     // Update Screen

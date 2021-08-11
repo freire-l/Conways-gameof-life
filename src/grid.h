@@ -11,17 +11,20 @@ class Grid{
 
     public:
         //Grid(int num_cells, int size_grid, int first_cell);
-        Grid(int num_cells, int size_grid);
+        ///Agosto 3
+        //Grid(int num_cells, int size_grid);
+        Grid(int num_cells, int size_grid, int width_grid, int height_grid);
+        ///
         int Count_Nhbr(Cell* the_cell); 
 
 //25 jul
 
 ///
         //agosto 3
-        static int _cells_displayed;
+        //static int _cells_displayed;
 
-        //static int _cells_displayed_x;
-        //static int _cells_displayed_y;
+        static int _cells_displayed_x;
+        static int _cells_displayed_y;
 
 ///
 
@@ -35,16 +38,16 @@ class Grid{
 
 ///
         //Agosto 3
-        int _size_grid;
-        int _num_cells;
+        //int _size_grid;
+        //int _num_cells;
 
-        /*
+        
         int _num_cells_x = 60;
         int _num_cells_y = 40;
 
         int _width_grid;
         int _height_grid;
-        */
+        
 ///
 
 /*25 jul

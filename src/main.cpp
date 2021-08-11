@@ -11,20 +11,20 @@
 
 ///
   //Agosto 3
-    int Cell::_height = kScreenSize/initial_display_cell;
-    int Cell::_width = kScreenSize/initial_display_cell;
+    //int Cell::_height = kScreenSize/initial_display_cell;
+    //int Cell::_width = kScreenSize/initial_display_cell;
 
-    //int Cell::_height = kScreenHeight/initial_display_cell_y; //descom
-    //int Cell::_width = kScreenWidth/initial_display_cell_x;
+    int Cell::_height = kScreenHeight/initial_display_cell_y; //descom
+    int Cell::_width = kScreenWidth/initial_display_cell_x;
 
 ///
 
 ///
     //agosto 3
-    int Grid::_cells_displayed = 40;
+    //int Grid::_cells_displayed = 40;
 
-    //int Grid::_cells_displayed_x = 60;
-    //int Grid::_cells_displeyed_y = 40;
+    int Grid::_cells_displayed_x = 60;
+    int Grid::_cells_displayed_y = 40;
 
 
 ///
@@ -47,9 +47,9 @@ int main( int argc, char* args[] ) {
 
 ///
   //Agosto 3
-  Renderer renderer(kScreenSize, kScreenSize);
+  //Renderer renderer(kScreenSize, kScreenSize);
 
-  //Renderer renderer(kScreenWidth, kScreenHeight);
+  Renderer renderer(kScreenWidth, kScreenHeight);
 
 ///
   Controller controller;
@@ -65,8 +65,8 @@ int main( int argc, char* args[] ) {
 
 ///
   //Agosto 3
-  Game game(kScreenSize);
-  //Game game(kGridWidth, kGridHeight);
+  //Game game(kScreenSize);
+  Game game(kScreenWidth, kScreenHeight);
 
 ///
   //std::cout<<"one"<<std::endl;

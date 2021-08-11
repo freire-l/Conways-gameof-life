@@ -11,13 +11,13 @@
 
 ///
   //Agosto 3
-  constexpr int initial_display_cell{40};
-  constexpr int kScreenSize{800};
+  //constexpr int initial_display_cell{40};
+  //constexpr int kScreenSize{800};
 
-  //constexpr int initial_display_cell_x{60};
-  //constexpr int initial_display_cell_y{40};
-  //constexpr int kScreenWidth{1200};
-  //constexpr int kScreenHeight{800};
+  constexpr int initial_display_cell_x{60};
+  constexpr int initial_display_cell_y{40};
+  constexpr int kScreenWidth{1200};
+  constexpr int kScreenHeight{800};
 
 ///
 

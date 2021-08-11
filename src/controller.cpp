@@ -101,31 +101,38 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
           break;
         case SDLK_w:
             //if(cells_displayed > 4)           
-            if(grid->_cells_displayed > 4) //
-            //if(grid->_cells_displayed_y > 4) //Agosto 3
+            //if(grid->_cells_displayed > 4) //
+            if(grid->_cells_displayed_y > 4) //Agosto 3
             {
               grid->_first_x++;
               grid->_first_y++;
               //
+              /*
               grid->_cells_displayed=grid->_cells_displayed-2;
               Cell::_height = grid->_size_grid/grid->_cells_displayed;
               Cell::_width = Cell::_height;
 
-              //grid->_cells_displayed_x=grid->_cells_displayed_x-2; //Agosto 3
-              //grid->_cells_displayed_y=grid->_cells_displayed_y-2; //Agosto 3
-              //Cell::_height = grid->_height_grid/grid->_cells_displayed_y;  //Agosto 3
-              //Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              std::cout<<"ZOOM IN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              */
+
+              grid->_cells_displayed_x=grid->_cells_displayed_x-2; //Agosto 3
+              grid->_cells_displayed_y=grid->_cells_displayed_y-2; //Agosto 3
+              Cell::_height = grid->_height_grid/grid->_cells_displayed_y;  //Agosto 3
+              Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+
+              std::cout<<"ZOOM IN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
 
               //
 
-              std::cout<<"ZOOM IN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              
             }
           break;
 
         case SDLK_s:
-            if(grid->_cells_displayed < grid->_max_zoom_out)
-            //if(grid->_cells_displayed_x < grid->_max_zoom_out) //Agosto 3
+            //if(grid->_cells_displayed < grid->_max_zoom_out)
+            if(grid->_cells_displayed_x < grid->_max_zoom_out) //Agosto 3
             {
+              /*
               bool top_left = (grid->_first_x==0)&&(grid->_first_y==0);   //top left corner
               bool bottom_right = (((grid->_first_x + grid->_cells_displayed) == grid->_num_cells)&&((grid->_first_y + grid->_cells_displayed) == grid->_num_cells)); //bottom right coner
               bool bottom_left = ((grid->_first_x==0)&&((grid->_first_y + grid->_cells_displayed) == grid->_num_cells));   //bottom left corner
@@ -134,9 +141,9 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
               bool right = (((grid->_first_x + grid->_cells_displayed) == grid->_num_cells)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed) != grid->_num_cells));
               bool bottom = (((grid->_first_y + grid->_cells_displayed) == grid->_num_cells)&&(grid->_first_x!=0)&&((grid->_first_x + grid->_cells_displayed) != grid->_num_cells));
               bool left = ((grid->_first_x==0)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed) != grid->_num_cells));
-             
+             */
               /// Agosto 3
-              /*
+              
               bool top_left = (grid->_first_x==0)&&(grid->_first_y==0);   //top left corner
               bool bottom_right = (((grid->_first_x + grid->_cells_displayed_x) == grid->_num_cells_x)&&((grid->_first_y + grid->_cells_displayed_y) == grid->_num_cells_y)); //bottom right coner
               bool bottom_left = ((grid->_first_x==0)&&((grid->_first_y + grid->_cells_displayed_y) == grid->_num_cells_y));   //bottom left corner
@@ -145,7 +152,7 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
               bool right = (((grid->_first_x + grid->_cells_displayed_x) == grid->_num_cells_x)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed_y) != grid->_num_cells_y));
               bool bottom = (((grid->_first_y + grid->_cells_displayed_y) == grid->_num_cells_y)&&(grid->_first_x!=0)&&((grid->_first_x + grid->_cells_displayed_x) != grid->_num_cells_x));
               bool left = ((grid->_first_x==0)&&(grid->_first_y!=0)&&((grid->_first_y + grid->_cells_displayed_y) != grid->_num_cells_y));
-              */
+              
               ///
               if(top_left){break;}
               else if(top_right){
@@ -182,18 +189,23 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
               }
 
               //
+              /*
               grid->_cells_displayed=grid->_cells_displayed+2;
               Cell::_height = grid->_size_grid/grid->_cells_displayed;
               Cell::_width = Cell::_height;
 
-              //grid->_cells_displayed_x=grid->_cells_displayed_x+2; //Agosto 3
-              //grid->_cells_displayed_y=grid->_cells_displayed_y+2; //Agosto 3
-              //Cell::_height = grid->_height_grid/grid->_cells_displayed_y;  //Agosto 3
-              //Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              std::cout<<"ZOOM OUT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              */
 
+              grid->_cells_displayed_x=grid->_cells_displayed_x+2; //Agosto 3
+              grid->_cells_displayed_y=grid->_cells_displayed_y+2; //Agosto 3
+              Cell::_height = grid->_height_grid/grid->_cells_displayed_y;  //Agosto 3
+              Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+
+              std::cout<<"ZOOM OUT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
               //
               
-                std::cout<<"ZOOM OUT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+                
             }
           break;
 
@@ -201,10 +213,11 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
             //std::cout<<"first: " << first_x << "  num_cells_displayed: " << (16-(first_x*2)) << "  result of formula: " << (first_x   + (16-(first_x*2))        ) << std::endl;
             //if(first_x+(16-(first_x*2))<16){
             //if(  (first_x   + (16-(first_x*2))        )   <     16){
-            if(  (grid->_first_x   + grid->_cells_displayed       )   <     grid->_num_cells){
-            //if(  (grid->_first_x   + grid->_cells_displayed_x       )   <     grid->_num_cells_x){    //Agosto 3
+            //if(  (grid->_first_x   + grid->_cells_displayed       )   <     grid->_num_cells){
+            if(  (grid->_first_x   + grid->_cells_displayed_x       )   <     grid->_num_cells_x){    //Agosto 3
               grid->_first_x++;
-              std::cout<<"RIGHT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              std::cout<<"RIGHT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              //std::cout<<"RIGHT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
             }
 
           break;
@@ -212,7 +225,8 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
           case SDLK_LEFT:
             if(grid->_first_x>0){
               grid->_first_x--;
-              std::cout<<"LEFT***   First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              //std::cout<<"LEFT***   First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed: " << grid->_cells_displayed<< "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              std::cout<<"LEFT**  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
             }
 
           break;
@@ -220,7 +234,8 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
           case SDLK_UP:
             if(grid->_first_y>0){
               grid->_first_y--;
-              std::cout<<"UP***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y<<" num_cells_displayed: " << grid->_cells_displayed << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              //std::cout<<"UP***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y<<" num_cells_displayed: " << grid->_cells_displayed << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              std::cout<<"UP***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
             }
 
           break;
@@ -229,10 +244,11 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
             //if(first_y+(16-(first_y*2))<16){
             //std::cout<<"first: " << first_x <<" num_cells_displayed: " << cells_displayed << "  result of formula: " << (first_y   + (16-(first_y*2))        ) << std::endl;
             //if((first_y   + (16-(first_y*2))        )   <     16){
-            if((grid->_first_y   + grid->_cells_displayed        )   <     grid->_num_cells){
-            //if((grid->_first_y   + grid->_cells_displayed_y        )   <     grid->_num_cells_y){   //Agosto 3
+            //if((grid->_first_y   + grid->_cells_displayed        )   <     grid->_num_cells){
+            if((grid->_first_y   + grid->_cells_displayed_y        )   <     grid->_num_cells_y){   //Agosto 3
               grid->_first_y++;
-              std::cout<<"DOWN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y<<" num_cells_displayed: " << grid->_cells_displayed << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              //std::cout<<"DOWN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y<<" num_cells_displayed: " << grid->_cells_displayed << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              std::cout<<"DOWN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
             }
 
           break;
@@ -267,19 +283,21 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
       }
       */
 
-     ///
+     /// AGosto 3
+     /*
       for (auto i : grid->_the_grid){
         if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed)))
           if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed)))
             i->handleEvent(&e, grid->_first_x, grid->_first_y);
       }
-      /*
+      */
+      
       for (auto i : grid->_the_grid){
         if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))
           if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))
             i->handleEvent(&e, grid->_first_x, grid->_first_y);
       }
-      */
+      
 
       ///
 
