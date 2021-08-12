@@ -23,13 +23,13 @@
     //agosto 3
     //int Grid::_cells_displayed = 40;
 
-    int Grid::_cells_displayed_x = 60;
+    int Grid::_cells_displayed_x = 80;
     int Grid::_cells_displayed_y = 40;
 
 
 ///
 
-    int Grid::_max_zoom_out = 52;
+    int Grid::_max_zoom_out = 120;
 
     int Grid::_first_x = 0;
     int Grid::_first_y = 0;

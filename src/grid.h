@@ -42,7 +42,7 @@ class Grid{
         //int _num_cells;
 
         
-        int _num_cells_x = 60;
+        int _num_cells_x = 80;
         int _num_cells_y = 40;
 
         int _width_grid;

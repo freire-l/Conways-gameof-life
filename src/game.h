@@ -34,7 +34,7 @@ class Game {
   */
 
   
-  const int _num_cells_x = 60;
+  const int _num_cells_x = 80;
   const int _num_cells_y = 40;
 
   int _first_cell_x = 0;
