@@ -66,18 +66,22 @@ void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, in
   int x = (((cell->_pos.x)-first_x)*(cell->_width)) + offset_x;
   int y = (((cell->_pos.y)-first_y)*(cell->_height))+ offset_y;
 
-  SDL_Rect draw_dims = { x, y, cell->_height,  cell->_width };
+  //SDL_Rect draw_dims = { x, y, cell->_height,  cell->_width };
+  SDL_Rect draw_dims = { x+1, y+1, cell->_height-2,  cell->_width-2 };
 
 
   if(cell->_is_alive == true)
   {
+    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF); //YELLOW
     SDL_RenderFillRect(sdl_renderer, &draw_dims);
     //std::cout<<"sup"<<std::endl;
   }
 
   else
   {
-    SDL_RenderDrawRect(sdl_renderer, &draw_dims);
+    SDL_SetRenderDrawColor(sdl_renderer, 0x99, 0x0A3, 0xA4, 0xFF); //GREY
+    SDL_RenderFillRect(sdl_renderer, &draw_dims);
+    //SDL_RenderDrawRect(sdl_renderer, &draw_dims);
     //std::cout<<"no"<<std::endl;
   }
 
@@ -88,10 +92,13 @@ void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, in
 //void Renderer::Render2(std::vector<Cell*> grid, int &first_x, int &first_y, int &cells_displayed){
 void Renderer::Render2(Grid* grid){
   // Clear screen
-  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); //BLACK
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0xFF, 0xFF); //WHITE
   SDL_RenderClear(sdl_renderer);
 
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF);
+  //SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF); //YELLOW
+
+  //SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0xFF, 0xFF); //WHITE
 
   //una variable que te diga cuales se van a desplegar de todas las que hay
 
