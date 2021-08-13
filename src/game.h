@@ -34,11 +34,17 @@ class Game {
   */
 
   
-  const int _num_cells_x = 80;
-  const int _num_cells_y = 40;
+  //const int _num_cells_x = 80;
+  //const int _num_cells_y = 40;
 
-  int _first_cell_x = 0;
-  int _first_cell_y = 0;
+  const int _num_cells_x = 240;
+  const int _num_cells_y = 120;
+
+  //le sumas el doble, y de ahi puedes poner las nuevas celdas como celdas de inicio
+  /*
+  int _first_cell_x = 80-1;
+  int _first_cell_y = 40-1;
+  */
   
   ///
   //******* Grid drivers ********  

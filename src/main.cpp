@@ -34,8 +34,8 @@
 
     int Grid::_max_zoom_out = 80;
 
-    int Grid::_first_x = 0;
-    int Grid::_first_y = 0;
+    int Grid::_first_x = 80-1;
+    int Grid::_first_y = 40-1;
 
 
 
