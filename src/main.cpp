@@ -26,10 +26,13 @@
     int Grid::_cells_displayed_x = 80;
     int Grid::_cells_displayed_y = 40;
 
+    int Grid::_offset_x = 0;
+    int Grid::_offset_y = 0;
+
 
 ///
 
-    int Grid::_max_zoom_out = 120;
+    int Grid::_max_zoom_out = 80;
 
     int Grid::_first_x = 0;
     int Grid::_first_y = 0;

@@ -118,10 +118,16 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
               grid->_cells_displayed_x=grid->_cells_displayed_x-4; //Agosto 3
               grid->_cells_displayed_y=grid->_cells_displayed_y-2; //Agosto 3
               //Cell::_height = grid->_height_grid/grid->_cells_displayed_y;  //Agosto 3
-              Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              float adjust_x = grid->_width_grid%grid->_cells_displayed_x; 
+              float adjust_y = grid->_height_grid%grid->_cells_displayed_y;
+              //Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              Cell::_width = (int) (grid->_width_grid/grid->_cells_displayed_x);
               Cell::_height = Cell::_width;
 
-              std::cout<<"ZOOM IN***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
+              grid->_offset_x=(int)(adjust_x/2);
+              grid->_offset_y=(int)(adjust_y/2);
+
+              std::cout<<"ZOOM IN***  adjust_x: "<< adjust_x<<"  adjust_y:"<<adjust_y<<" First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
 
               //
 
@@ -204,8 +210,17 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
               grid->_cells_displayed_x=grid->_cells_displayed_x+4; //Agosto 3
               grid->_cells_displayed_y=grid->_cells_displayed_y+2; //Agosto 3
               //Cell::_height = grid->_height_grid/grid->_cells_displayed_y;  //Agosto 3
-              Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              //Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              //Cell::_height = Cell::_width;
+
+              float adjust_x = grid->_width_grid%grid->_cells_displayed_x; 
+              float adjust_y = grid->_height_grid%grid->_cells_displayed_y;
+              //Cell::_width = grid->_width_grid/grid->_cells_displayed_x;    //Agosto 3
+              Cell::_width = (int) (grid->_width_grid/grid->_cells_displayed_x);
               Cell::_height = Cell::_width;
+
+              grid->_offset_x=(int)(adjust_x/2);
+              grid->_offset_y=(int)(adjust_y/2);
 
               std::cout<<"ZOOM OUT***  First X: " << grid->_first_x << "  First Y: " << grid->_first_y <<" num_cells_displayed X: " << grid->_cells_displayed_x << " num_cells_displayed Y: " << grid->_cells_displayed_y << "  Height: "<< Cell::_height << "  Width: " <<Cell::_width  << std::endl;
               //

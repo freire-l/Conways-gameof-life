@@ -59,12 +59,12 @@ Renderer::~Renderer() {
   sdl_window = NULL;
   SDL_Quit();
 }
-void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y){
+void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, int offset_y){
   SDL_Texture* mTexture = NULL;
 
   //SDL_Rect draw_dims = { cell->_pos.x, cell->_pos.y, cell->_height,  cell->_width };
-  int x = ((cell->_pos.x)-first_x)*(cell->_width);
-  int y = ((cell->_pos.y)-first_y)*(cell->_height);
+  int x = (((cell->_pos.x)-first_x)*(cell->_width)) + offset_x;
+  int y = (((cell->_pos.y)-first_y)*(cell->_height))+ offset_y;
 
   SDL_Rect draw_dims = { x, y, cell->_height,  cell->_width };
 
@@ -109,7 +109,7 @@ void Renderer::Render2(Grid* grid){
         for (auto i : grid->_the_grid){
         if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))
           if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))
-            DrawCell(i,grid->_first_x, grid->_first_y);
+            DrawCell(i,grid->_first_x, grid->_first_y, grid->_offset_x, grid->_offset_y);
       }
       
 

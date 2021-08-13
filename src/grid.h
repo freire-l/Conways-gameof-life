@@ -33,6 +33,9 @@ class Grid{
         static int _first_x;
         static int _first_y;
 
+        static int _offset_x;
+        static int _offset_y;
+
     private:
         std::vector<Cell*> _the_grid;
 
