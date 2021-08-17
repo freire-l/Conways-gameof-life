@@ -40,15 +40,15 @@
         int Cell::get_x(){return _pos.x;}
         int Cell::get_y(){return _pos.y;}
 
-        void Cell::handleEvent(SDL_Event* e, int first_x, int first_y){
+        void Cell::handleEvent(SDL_Event* e, int first_x, int first_y, int offset_x, int offset_y){
             //If mouse event happened
             if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP )
             {
                 //Get mouse position
                 int x, y;
                 SDL_GetMouseState( &x, &y );
-                int cell_x=((_pos.x)-first_x)*(_width);
-                int cell_y=((_pos.y)-first_y)*(_height);
+                int cell_x=(((_pos.x)-first_x)*(_width))+offset_x;
+                int cell_y=(((_pos.y)-first_y)*(_height))+offset_y;
 
                 //Check if mouse is in button
                 bool inside = true;

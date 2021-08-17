@@ -37,8 +37,14 @@ class Game {
   //const int _num_cells_x = 80;
   //const int _num_cells_y = 40;
 
-  const int _num_cells_x = 240;
-  const int _num_cells_y = 120;
+  //const int _num_cells_x = 240;
+  //const int _num_cells_y = 120;
+
+  const int _num_cells_x = 720;
+  const int _num_cells_y = 360;
+
+  //const int _num_cells_x = 2160;
+  //const int _num_cells_y = 1080;
 
   //le sumas el doble, y de ahi puedes poner las nuevas celdas como celdas de inicio
   /*

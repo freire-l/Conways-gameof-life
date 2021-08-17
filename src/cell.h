@@ -14,7 +14,7 @@ class Cell{
         //Cell(int x, int y, int w, int h);
         Cell(int x, int y, int index);
         void setter_Pos(int x, int y);
-        void handleEvent(SDL_Event* e, int first_x, int first_y);
+        void handleEvent(SDL_Event* e, int first_x, int first_y, int offset_x, int offset_y);
 
         void toggle_life();
         void set_life(bool value);
