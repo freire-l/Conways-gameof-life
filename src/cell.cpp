@@ -25,6 +25,8 @@
 
             _index = index;
 
+            _to_update = false;
+
             //_next_life = false;
         }
 
@@ -42,8 +44,9 @@
 
         void Cell::handleEvent(SDL_Event* e, int first_x, int first_y, int offset_x, int offset_y){
             //If mouse event happened
-            if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP )
-            {
+            //if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP )
+            //if( e->type == SDL_MOUSEBUTTONDOWN )
+            //{
                 //Get mouse position
                 int x, y;
                 SDL_GetMouseState( &x, &y );
@@ -83,24 +86,16 @@
                 else
                 {
                     //Set mouse over sprite
-                    switch( e->type )
-                    {
-                        case SDL_MOUSEMOTION:
-                        //mCurrentSprite = BUTTON_SPRITE_MOUSE_OVER_MOTION;
-                        break;
-                    
-                        case SDL_MOUSEBUTTONDOWN:
+                    //switch( e->type )
+                    //{
+                        //case SDL_MOUSEBUTTONDOWN:
                         //mCurrentSprite = BUTTON_SPRITE_MOUSE_DOWN;
                         std::cout<<"centro click "<< "x: " <<_pos.x<<"  y: "<<_pos.y <<std::endl;
                         toggle_life();
-                        break;
-                        
-                        case SDL_MOUSEBUTTONUP:
-                        //mCurrentSprite = BUTTON_SPRITE_MOUSE_UP;
-                        break;
-                    }
+                        //break;
+                    //}
                 }
-            }
+            //}
         }
 
         void Cell::toggle_life(){
@@ -109,12 +104,14 @@
             {
                 _is_alive = true;
                 //std::cout<<"oe"<<std::endl;
+                _to_update = true;
 
             }
             else if (_is_alive == true)
             {
                 _is_alive = false;
                 //std::cout<<"flaco"<<std::endl;
+                _to_update = true;
 
             }
         }

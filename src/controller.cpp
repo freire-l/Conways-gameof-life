@@ -311,12 +311,17 @@ void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh,
             i->handleEvent(&e, grid->_first_x, grid->_first_y);
       }
       */
-      
-      for (auto i : grid->_the_grid){
-        if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))
-          if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))
-            i->handleEvent(&e, grid->_first_x, grid->_first_y, grid->_offset_x, grid->_offset_y);
+      if( e.type == SDL_MOUSEBUTTONDOWN ){
+
+          for (auto i : grid->_the_grid){
+            if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))
+              if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))
+                i->handleEvent(&e, grid->_first_x, grid->_first_y, grid->_offset_x, grid->_offset_y);
+          }
+
       }
+
+      
       
 
       ///

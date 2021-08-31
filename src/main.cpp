@@ -37,11 +37,11 @@
     //int Grid::_first_x = 80-1;
     //int Grid::_first_y = 40-1;
 
-    int Grid::_first_x = 240-1;
-    int Grid::_first_y = 120-1;
+    //int Grid::_first_x = 240-1;
+    //int Grid::_first_y = 120-1;
 
-    //int Grid::_first_x = 720-1;
-    //int Grid::_first_y = 360-1;
+    int Grid::_first_x = 720-1;
+    int Grid::_first_y = 360-1;
 
     //este 16 es el que puede variar seg[un el numero de celdas que quieras desplegar
 

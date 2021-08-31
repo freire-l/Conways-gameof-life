@@ -1,6 +1,7 @@
 #include "renderer.h"
 #include <iostream>
 #include <string>
+#include <thread>
 
 /*Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
@@ -51,7 +52,7 @@ Renderer::Renderer(const std::size_t screen_width,
   */
 
   //wait two seconds
-  SDL_Delay( 1000 );
+  //SDL_Delay( 1000 );
 }
 
 Renderer::~Renderer() {
@@ -59,35 +60,51 @@ Renderer::~Renderer() {
   sdl_window = NULL;
   SDL_Quit();
 }
-void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, int offset_y){
-  SDL_Texture* mTexture = NULL;
-
-  //SDL_Rect draw_dims = { cell->_pos.x, cell->_pos.y, cell->_height,  cell->_width };
-  int x = (((cell->_pos.x)-first_x)*(cell->_width)) + offset_x;
-  int y = (((cell->_pos.y)-first_y)*(cell->_height))+ offset_y;
-
-  //SDL_Rect draw_dims = { x, y, cell->_height,  cell->_width };
-  SDL_Rect draw_dims = { x+1, y+1, cell->_height-2,  cell->_width-2 };
-
-
-  if(cell->_is_alive == true)
+//void Renderer::DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, int offset_y){
+void Renderer::DrawCell (Cell *cell, Grid *grid){
+  if(((cell->_pos.x>=grid->_first_x)&&(cell->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))&&((cell->_pos.y>=grid->_first_y)&&(cell->_pos.y<(grid->_first_y+grid->_cells_displayed_y))))
   {
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF); //YELLOW
-    SDL_RenderFillRect(sdl_renderer, &draw_dims);
-    //std::cout<<"sup"<<std::endl;
+    int first_x = grid ->_first_x;
+    int first_y = grid ->_first_y;
+    int offset_x = grid ->_offset_x;
+    int offset_y = grid ->_offset_y;
+
+      //SDL_Texture* mTexture = NULL;
+
+      //SDL_Rect draw_dims = { cell->_pos.x, cell->_pos.y, cell->_height,  cell->_width };
+      int x = (((cell->_pos.x)-first_x)*(cell->_width)) + offset_x;
+      int y = (((cell->_pos.y)-first_y)*(cell->_height))+ offset_y;
+
+      //SDL_Rect draw_dims = { x, y, cell->_height,  cell->_width };
+      SDL_Rect draw_dims = { x+1, y+1, cell->_height-2,  cell->_width-2 };
+
+
+      if(cell->_is_alive == true)
+      {
+        SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF); //YELLOW
+        SDL_RenderFillRect(sdl_renderer, &draw_dims);
+        //std::cout<<"sup"<<std::endl;
+      }
+
+      else
+      {
+        SDL_SetRenderDrawColor(sdl_renderer, 0x99, 0x0A3, 0xA4, 0xFF); //GREY
+        SDL_RenderFillRect(sdl_renderer, &draw_dims);
+        //SDL_RenderDrawRect(sdl_renderer, &draw_dims);
+        //std::cout<<"no"<<std::endl;
+      }
+
   }
 
-  else
-  {
-    SDL_SetRenderDrawColor(sdl_renderer, 0x99, 0x0A3, 0xA4, 0xFF); //GREY
-    SDL_RenderFillRect(sdl_renderer, &draw_dims);
-    //SDL_RenderDrawRect(sdl_renderer, &draw_dims);
-    //std::cout<<"no"<<std::endl;
-  }
-
-  SDL_DestroyTexture( mTexture );
+  //SDL_DestroyTexture( mTexture );
 }
-
+/*
+void Renderer::DrawGrid (Cell *i, Grid *grid)
+{
+  if(((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))&&((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y))))
+    DrawCell(i,grid->_first_x, grid->_first_y, grid->_offset_x, grid->_offset_y);
+}
+*/
 //void Renderer::Render2(Cell* cell){
 //void Renderer::Render2(std::vector<Cell*> grid, int &first_x, int &first_y, int &cells_displayed){
 void Renderer::Render2(Grid* grid){
@@ -112,12 +129,30 @@ void Renderer::Render2(Grid* grid){
       }
       */
 
-      
-        for (auto i : grid->_the_grid){
+      /*
+      for (auto i : grid->_the_grid){
         if((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))
           if((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))
-            DrawCell(i,grid->_first_x, grid->_first_y, grid->_offset_x, grid->_offset_y);
+          {}
+            //DrawCell(i,grid->_first_x, grid->_first_y, grid->_offset_x, grid->_offset_y);
       }
+      */
+    /*
+     std::vector <std::thread> threads;
+      for (auto i : grid->_the_grid){
+        threads.push_back(std::thread(DrawCell, i, grid));
+      }
+
+      for (auto &t : threads){
+        t.join();
+      }
+      */
+
+      
+      for (auto i : grid->_the_grid){
+        DrawCell( i, grid);
+      }
+
       
 
 ///

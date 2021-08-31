@@ -67,6 +67,7 @@ void Game::Update_next_grid(){
 
 void Game::Run(Controller const &controller, Renderer &renderer){
     bool is_running = true;
+    Uint32 target_frame = 60;
     Uint32 title_timestamp = SDL_GetTicks();
     Uint32 frame_start;
     Uint32 frame_end;
@@ -82,9 +83,9 @@ void Game::Run(Controller const &controller, Renderer &renderer){
   
       // Input, Update, Render - the main game loop.
 
-      //controller.HandleInput2(is_running, _the_grid, first_x, first_y, cells_displayed, target_refresh);
+      
       controller.HandleInput2(is_running, _actual_grid, target_refresh, go, step);
-      //Update();
+                  //Update();
       renderer.Render2(_actual_grid);
 
       frame_end = SDL_GetTicks();
@@ -93,34 +94,21 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       // takes.
       frame_count++;
       frame_duration = frame_end - frame_start;
+      //std::cout << "frame duration" << frame_duration << std::endl;
 
-      //std::cout<<"A**"<<std::endl;
       // After every second, update the window title.
       if(go==true || step == true){
           if ((frame_end - title_timestamp >= target_refresh) || (go == false && step == true)) {
-            //update next_grid
-            //std::cout<<"B**"<<std::endl;
+
             Update_next_grid();
-            //make next grid the actual grid
-              //std::cout<<"C**"<<std::endl;
-            //25 jul //Grid* aux =  new Grid(0,0,0);
 
-            ///Agosto 3
-            //Grid* aux =  new Grid(0,0);
             Grid* aux =  new Grid(0,0,0,0);
-            ///
-
             aux =  _actual_grid;
-              //std::cout<<"D**"<<std::endl;
             _actual_grid = _next_grid;
-              //std::cout<<"E**"<<std::endl;
             _next_grid = aux;
-              //std::cout<<"F**"<<std::endl;
-              aux = NULL;
-
+            aux = NULL;
               delete(aux);
 
-            //delete(aux);
 
             frame_count = 0;
             title_timestamp = frame_end;
@@ -128,6 +116,11 @@ void Game::Run(Controller const &controller, Renderer &renderer){
           }
               if (step == true)
                 step = false;
+      }
+
+      if (frame_duration < target_frame) {
+        SDL_Delay(target_frame - frame_duration);
+        //std::cout << "waiting" << std::endl;
       }
     }
 }

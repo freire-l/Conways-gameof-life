@@ -20,7 +20,12 @@ class Renderer{
   //void Render2(std::vector<Cell*> grid, int &limit_x, int &limit_y,int &cells_displayed);
   void Render2(Grid* grid);
 
-  void DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, int offset_y);
+  //void DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, int offset_y);
+
+  void DrawCell (Cell *i, Grid *grid);
+
+  //static void DrawGrid (Cell *i, Grid *grid);
+
   void UpdateWindowTitle(int score, int fps);
 
  private:

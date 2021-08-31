@@ -36,6 +36,7 @@ class Cell{
         //position
         SDL_Point _pos;
         bool _is_alive;
+        bool _to_update;
         //bool _next_life;
         //int _width;
         //int _height;
