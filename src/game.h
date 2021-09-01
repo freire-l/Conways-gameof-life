@@ -2,11 +2,15 @@
 #define GAME_H
 
 #include <random>
+#include <thread>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
 #include "cell.h"
+
 //#include "snake.h"
+
+
 
 class Game {
  public:
@@ -17,6 +21,9 @@ class Game {
 ///
   void Run(Controller const &controller, Renderer &renderer);
   void Update_next_grid();
+
+  static void Update_cells_wrapper(Game *game,Cell *i);
+  void Update_cells(Cell *i);
 
  private:
   //std::vector<Cell*>* _actual_grid;

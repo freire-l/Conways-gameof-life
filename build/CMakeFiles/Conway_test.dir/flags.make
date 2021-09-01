@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/usr/include/SDL2 -I/home/luisf/workspace/Conways_Game_of_Life/src
 
-CXX_FLAGS =   -std=c++17 -pthread -std=gnu++17
+CXX_FLAGS = -pthread
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 
+
 ///
 
   //Agosto 3
@@ -19,14 +20,81 @@ Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_gr
   _next_grid   = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
 }
 
+//31 agosto
+/*
+     std::vector <std::thread> threads;
+      for (auto i : grid->_the_grid){
+        threads.push_back(std::thread(DrawCell, i, grid));
+      }
 
+      for (auto &t : threads){
+        t.join();
+      }
+*/
+
+void Game::Update_cells_wrapper(Game* game, Cell *i){
+  game->Update_cells(i);
+}
+
+void Game::Update_cells(Cell *i){
+        int sum = _actual_grid->Count_Nhbr(i);
+        bool is_alive = false;
+        bool new_live = false;
+        //update value of next "point"
+
+        //accessing the array
+        is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();
+        //conditions to game of life
+        if(is_alive){
+          if(sum<=1 || sum>=4){
+            new_live = false;
+            //(_next_grid->_the_grid)[i->_index]->set_life(false);
+            //std::cout<<"A ******************************* ";
+            }
+          else if(sum == 2 || sum ==3){
+            new_live = true;
+            //(_next_grid->_the_grid)[i->_index]->set_life(true);
+            //std::cout<<"B ******************************** ";
+            }
+          else {
+            new_live = false;
+            //(_next_grid->_the_grid)[i->_index]->set_life(false);
+            //std::cout<<"F ******************************* ";
+          }
+
+        }else{
+          if(sum ==3){
+            new_live = true;
+            //(_next_grid->_the_grid)[i->_index]->set_life(true);
+            //std::cout<<"C *********************************** ";
+          } else{
+            new_live = false;
+            //(_next_grid->_the_grid)[i->_index]->set_life(false);
+            //std::cout<<"F ******************************* ";
+          }
+        }
+        //writing to array
+        (_next_grid->_the_grid)[i->_index]->set_life(new_live);
+
+        //possible reasons:
+        //data race, creating to many threads
+}
 ///
+
+/*
+
+*/
+
 
 void Game::Update_next_grid(){
       auto point = _next_grid->_the_grid;
-      for (auto i : _actual_grid->_the_grid){
-        //count live neighbors of actual "i"
-        //std::cout<<"G**"<<std::endl;
+
+      std::vector <std::thread> threads;/////
+      for (auto i : _actual_grid->_the_grid){/////
+
+            threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////
+        
+        /*
         int sum = _actual_grid->Count_Nhbr(i);
 
         //update value of next "point"
@@ -34,34 +102,27 @@ void Game::Update_next_grid(){
         if((_actual_grid->_the_grid)[i->_index]->check_life()){
           if(sum<=1 || sum>=4){
             (_next_grid->_the_grid)[i->_index]->set_life(false);
-            //std::cout<<"A ******************************* ";
             }
           else if(sum == 2 || sum ==3){
             (_next_grid->_the_grid)[i->_index]->set_life(true);
-            //std::cout<<"B ******************************** ";
             }
           else {
             (_next_grid->_the_grid)[i->_index]->set_life(false);
-            //std::cout<<"F ******************************* ";
           }
 
         }else{
           if(sum ==3){
             (_next_grid->_the_grid)[i->_index]->set_life(true);
-            //std::cout<<"C *********************************** ";
           } else{
             (_next_grid->_the_grid)[i->_index]->set_life(false);
-            //std::cout<<"F ******************************* ";
           }
         }
-        //std::cout<<std::endl;
-        //std::cout<<"Cell Index: "<<i->_index<< "  X: "<< (i->get_x()) << "  Y: "<< (i->get_y()) << "  Neighb:" << sum << std::endl;
-        //if((_next_grid->_the_grid)[i->_index]->check_life())
-          //std::cout<<"La siguiente est[a viva"<<std::endl;
-        //else
-          //std::cout<<"La siguiente est[a muerta"<<std::endl;
-
+        */
       }
+
+          for (auto &t : threads){/////
+            t.join();/////
+          }////
 
 }
 

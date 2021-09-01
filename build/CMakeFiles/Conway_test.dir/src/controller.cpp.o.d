@@ -12,7 +12,6 @@ CMakeFiles/Conway_test.dir/src/controller.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
- /usr/include/c++/9/pstl/pstl_config.h \
  /usr/include/c++/9/bits/functexcept.h \
  /usr/include/c++/9/bits/exception_defines.h \
  /usr/include/c++/9/bits/cpp_type_traits.h \
@@ -39,9 +38,8 @@ CMakeFiles/Conway_test.dir/src/controller.cpp.o: \
  /usr/include/c++/9/bits/stl_construct.h \
  /usr/include/c++/9/ext/alloc_traits.h \
  /usr/include/c++/9/bits/alloc_traits.h \
- /usr/include/c++/9/bits/stl_uninitialized.h /usr/include/c++/9/utility \
- /usr/include/c++/9/bits/stl_relops.h /usr/include/c++/9/initializer_list \
- /usr/include/c++/9/bits/stl_vector.h \
+ /usr/include/c++/9/bits/stl_uninitialized.h \
+ /usr/include/c++/9/bits/stl_vector.h /usr/include/c++/9/initializer_list \
  /usr/include/c++/9/bits/stl_bvector.h \
  /usr/include/c++/9/bits/functional_hash.h \
  /usr/include/c++/9/bits/range_access.h \
@@ -111,19 +109,6 @@ CMakeFiles/Conway_test.dir/src/controller.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/9/bits/specfun.h /usr/include/c++/9/limits \
- /usr/include/c++/9/tr1/gamma.tcc \
- /usr/include/c++/9/tr1/special_function_util.h \
- /usr/include/c++/9/tr1/bessel_function.tcc \
- /usr/include/c++/9/tr1/beta_function.tcc \
- /usr/include/c++/9/tr1/ell_integral.tcc \
- /usr/include/c++/9/tr1/exp_integral.tcc \
- /usr/include/c++/9/tr1/hypergeometric.tcc \
- /usr/include/c++/9/tr1/legendre_function.tcc \
- /usr/include/c++/9/tr1/modified_bessel_func.tcc \
- /usr/include/c++/9/tr1/poly_hermite.tcc \
- /usr/include/c++/9/tr1/poly_laguerre.tcc \
- /usr/include/c++/9/tr1/riemann_zeta.tcc \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/float.h \
  /usr/include/SDL2/SDL_assert.h /usr/include/SDL2/SDL_atomic.h \
  /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/SDL_audio.h \
@@ -235,21 +220,18 @@ CMakeFiles/Conway_test.dir/src/controller.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h \
- /usr/include/c++/9/string_view /usr/include/c++/9/bits/string_view.tcc \
  /usr/include/c++/9/ext/string_conversions.h /usr/include/c++/9/cstdio \
  /usr/include/c++/9/cerrno /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
- /usr/include/c++/9/bits/basic_string.tcc \
+ /usr/include/c++/9/bits/basic_string.tcc /usr/include/c++/9/limits \
  /usr/include/c++/9/bits/random.h \
  /usr/include/c++/9/bits/uniform_int_dist.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/opt_random.h \
  /usr/include/c++/9/bits/random.tcc /usr/include/c++/9/numeric \
  /usr/include/c++/9/bits/stl_numeric.h \
- /usr/include/c++/9/pstl/glue_numeric_defs.h \
- /usr/include/c++/9/pstl/execution_defs.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/grid.h \
  /usr/include/c++/9/iostream /usr/include/c++/9/ostream \
  /usr/include/c++/9/ios /usr/include/c++/9/bits/ios_base.h \
