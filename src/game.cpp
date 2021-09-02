@@ -1,4 +1,5 @@
 #include "game.h"
+#include "utils.h"
 #include <iostream>
 #include "SDL.h"
 
@@ -16,8 +17,8 @@ Game::Game(int size_grid): _size_grid(size_grid){
 
 
 Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_grid(height_grid){
-  _actual_grid = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
-  _next_grid   = new Grid(_num_cells_x, _num_cells_y, _width_grid, _height_grid);
+  _actual_grid = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
+  _next_grid   = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
 }
 
 //31 agosto
@@ -81,54 +82,28 @@ void Game::Update_cells(Cell *i){
 }
 ///
 
-/*
-
-*/
-
-
 void Game::Update_next_grid(){
       auto point = _next_grid->_the_grid;
 
-      std::vector <std::thread> threads;/////
-      for (auto i : _actual_grid->_the_grid){/////
+      //std::vector <std::thread> threads;/////
+      for (auto i : _actual_grid->_the_grid){
 
-            threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////
-        
-        /*
-        int sum = _actual_grid->Count_Nhbr(i);
-
-        //update value of next "point"
-        //conditions to game of life
-        if((_actual_grid->_the_grid)[i->_index]->check_life()){
-          if(sum<=1 || sum>=4){
-            (_next_grid->_the_grid)[i->_index]->set_life(false);
-            }
-          else if(sum == 2 || sum ==3){
-            (_next_grid->_the_grid)[i->_index]->set_life(true);
-            }
-          else {
-            (_next_grid->_the_grid)[i->_index]->set_life(false);
-          }
-
-        }else{
-          if(sum ==3){
-            (_next_grid->_the_grid)[i->_index]->set_life(true);
-          } else{
-            (_next_grid->_the_grid)[i->_index]->set_life(false);
-          }
-        }
-        */
+            //threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////
+            Update_cells(i);
       }
 
-          for (auto &t : threads){/////
-            t.join();/////
-          }////
+        //Multithreading
+        /*
+          for (auto &t : threads){
+            t.join();
+          }
+        */
 
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer){
     bool is_running = true;
-    Uint32 target_frame = 60;
+    Uint32 target_frame = kFramesPerSecond;
     Uint32 title_timestamp = SDL_GetTicks();
     Uint32 frame_start;
     Uint32 frame_end;

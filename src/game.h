@@ -50,8 +50,8 @@ class Game {
   //const int _num_cells_x = 720;
   //const int _num_cells_y = 360;
 
-  const int _num_cells_x = 2160;
-  const int _num_cells_y = 1080;
+  //const int _num_cells_x = 2160;
+  //const int _num_cells_y = 1080;
 
   //le sumas el doble, y de ahi puedes poner las nuevas celdas como celdas de inicio
   /*

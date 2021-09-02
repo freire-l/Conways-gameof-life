@@ -9,23 +9,13 @@
 
 class Renderer{
  public:
-  /*Renderer(const std::size_t screen_width, const std::size_t screen_height,
-           const std::size_t grid_width, const std::size_t grid_height);*/
   Renderer(const std::size_t screen_width, const std::size_t screen_height);
 
   ~Renderer();
 
   void Render(Snake const snake, SDL_Point const &food);
-  //void Render2(Cell* cell);
-  //void Render2(std::vector<Cell*> grid, int &limit_x, int &limit_y,int &cells_displayed);
   void Render2(Grid* grid);
-
-  //void DrawCell(Cell* cell, int &first_x, int &first_y, int offset_x, int offset_y);
-
   void DrawCell (Cell *i, Grid *grid);
-
-  //static void DrawGrid (Cell *i, Grid *grid);
-
   void UpdateWindowTitle(int score, int fps);
 
  private:
@@ -35,8 +25,7 @@ class Renderer{
 
   const std::size_t screen_width;
   const std::size_t screen_height;
-  //const std::size_t grid_width;
-  //const std::size_t grid_height;
+
 };
 
 #endif

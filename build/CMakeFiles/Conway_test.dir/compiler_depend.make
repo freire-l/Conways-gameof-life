@@ -952,6 +952,7 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o: ../src/game.cpp \
   ../src/cell.h \
   ../src/grid.h \
   ../src/renderer.h \
+  ../src/utils.h \
   /usr/include/c++/9/iostream \
   /usr/include/c++/9/ostream \
   /usr/include/c++/9/ios \
