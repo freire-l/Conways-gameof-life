@@ -3,35 +3,15 @@
 #include <iostream>
 #include "SDL.h"
 
-
-///
-
-  //Agosto 3
-/*
-Game::Game(int size_grid): _size_grid(size_grid){
-
-  _actual_grid = new Grid(_num_cells, _size_grid);
-  _next_grid   = new Grid(_num_cells, _size_grid);
-}
-*/
-
+//****************************************************//
+//*****         Game Class Constructor          ******//
+//****************************************************//
 
 Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_grid(height_grid){
+  //Creating actual grid and next grid, both with the same dimentions
   _actual_grid = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
   _next_grid   = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
 }
-
-//31 agosto
-/*
-     std::vector <std::thread> threads;
-      for (auto i : grid->_the_grid){
-        threads.push_back(std::thread(DrawCell, i, grid));
-      }
-
-      for (auto &t : threads){
-        t.join();
-      }
-*/
 
 void Game::Update_cells_wrapper(Game* game, Cell *i){
   game->Update_cells(i);
@@ -50,28 +30,23 @@ void Game::Update_cells(Cell *i){
           if(sum<=1 || sum>=4){
             new_live = false;
             //(_next_grid->_the_grid)[i->_index]->set_life(false);
-            //std::cout<<"A ******************************* ";
             }
           else if(sum == 2 || sum ==3){
             new_live = true;
             //(_next_grid->_the_grid)[i->_index]->set_life(true);
-            //std::cout<<"B ******************************** ";
             }
           else {
             new_live = false;
             //(_next_grid->_the_grid)[i->_index]->set_life(false);
-            //std::cout<<"F ******************************* ";
           }
 
         }else{
           if(sum ==3){
             new_live = true;
             //(_next_grid->_the_grid)[i->_index]->set_life(true);
-            //std::cout<<"C *********************************** ";
           } else{
             new_live = false;
             //(_next_grid->_the_grid)[i->_index]->set_life(false);
-            //std::cout<<"F ******************************* ";
           }
         }
         //writing to array
@@ -101,154 +76,73 @@ void Game::Update_next_grid(){
 
 }
 
+//****************************************************//
+//*****             Game Run Method             ******//
+//****************************************************//
+
 void Game::Run(Controller const &controller, Renderer &renderer){
-    bool is_running = true;
+    bool is_running = true;                        //Variable that controls wether the game is running or not
+
+    //Variables that meassure time and help control the frame rate
     Uint32 target_frame = kFramesPerSecond;
-    Uint32 title_timestamp = SDL_GetTicks();
+    Uint32 start_timestamp = SDL_GetTicks();
     Uint32 frame_start;
     Uint32 frame_end;
     Uint32 frame_duration;
     int frame_count = 0;
 
-    Uint32 target_refresh = 1024;    
+    Uint32 target_refresh = 1024;                  //Speed of grid update
 
 
-    while (is_running) {
+    while (is_running) {                    //Main loop, controlled by is_running
   
-      frame_start = SDL_GetTicks();
+      frame_start = SDL_GetTicks();         //Get time at the start of the loop
   
-      // Input, Update, Render - the main game loop.
+      // Game main loop Input, Update, Render - the main game loop.
 
-      
-      controller.HandleInput2(is_running, _actual_grid, target_refresh, go, step);
-                  //Update();
-      renderer.Render2(_actual_grid);
+      //**** Input   *********
+      controller.HandleInput2(is_running, _actual_grid, target_refresh, go, step);     //Method takes references to all game drivers, so they can be 
+                                                                                       // affected by the input
 
-      frame_end = SDL_GetTicks();
+      frame_end = SDL_GetTicks();            //Get current time
 
       // Keep track of how long each loop through the input/update/render cycle
       // takes.
       frame_count++;
       frame_duration = frame_end - frame_start;
-      //std::cout << "frame duration" << frame_duration << std::endl;
 
-      // After every second, update the window title.
+      //******* Update *********
+      // The Grid will be updated if "go" is active (Grid running)
+      // or if a "step" of update is to be taken
       if(go==true || step == true){
-          if ((frame_end - title_timestamp >= target_refresh) || (go == false && step == true)) {
+          if ((frame_end - start_timestamp >= target_refresh) || (go == false && step == true)) {      //update if time passed matches the refresh rate
 
-            Update_next_grid();
+            Update_next_grid();     //Update the next grid based on the current grid values <-----------YOU ARE HERE
 
+            //Making the actual grid the nest grid by creating a temporary one
+            //the memory form the axu grid is deleted afterwards
             Grid* aux =  new Grid(0,0,0,0);
             aux =  _actual_grid;
             _actual_grid = _next_grid;
             _next_grid = aux;
             aux = NULL;
-              delete(aux);
+            delete(aux);
 
-
-            frame_count = 0;
-            title_timestamp = frame_end;
+            //New start time
+            start_timestamp = frame_end;
 
           }
-              if (step == true)
-                step = false;
+          // Reset the step variable if it is active, so no more than one step is taken
+          if (step == true)
+            step = false;
       }
 
+      //******   Render   *********
+      renderer.Render2(_actual_grid);
+
+      //Stall execution if we are bellow the target farme duration
       if (frame_duration < target_frame) {
         SDL_Delay(target_frame - frame_duration);
-        //std::cout << "waiting" << std::endl;
       }
     }
 }
-
-
-
-//*********************************************************************
-//*********************************************************************
-
-/*
-Game::Game(std::size_t grid_width, std::size_t grid_height)
-    : snake(grid_width, grid_height),
-      engine(dev()),
-      random_w(0, static_cast<int>(grid_width - 1)),
-      random_h(0, static_cast<int>(grid_height - 1)) {
-  PlaceFood();
-}
-
-void Game::Run(Controller const &controller, Renderer &renderer,
-               std::size_t target_frame_duration) {
-  Uint32 title_timestamp = SDL_GetTicks();
-  Uint32 frame_start;
-  Uint32 frame_end;
-  Uint32 frame_duration;
-  int frame_count = 0;
-  bool running = true;
-
-  while (running) {
-    frame_start = SDL_GetTicks();
-
-    // Input, Update, Render - the main game loop.
-    controller.HandleInput(running, snake);
-    Update();
-    renderer.Render(snake, food);
-
-    frame_end = SDL_GetTicks();
-
-    // Keep track of how long each loop through the input/update/render cycle
-    // takes.
-    frame_count++;
-    frame_duration = frame_end - frame_start;
-
-    // After every second, update the window title.
-    if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
-      frame_count = 0;
-      title_timestamp = frame_end;
-    }
-
-    // If the time for this frame is too small (i.e. frame_duration is
-    // smaller than the target ms_per_frame), delay the loop to
-    // achieve the correct frame rate.
-    if (frame_duration < target_frame_duration) {
-      SDL_Delay(target_frame_duration - frame_duration);
-    }
-  }
-}
-
-void Game::PlaceFood() {
-  int x, y;
-  while (true) {
-    x = random_w(engine);
-    y = random_h(engine);
-    // Check that the location is not occupied by a snake item before placing
-    // food.
-    if (!snake.SnakeCell(x, y)) {
-      food.x = x;
-      food.y = y;
-      return;
-    }
-  }
-}
-
-void Game::Update() {
-  if (!snake.alive) return;
-
-  snake.Update();
-
-  int new_x = static_cast<int>(snake.head_x);
-  int new_y = static_cast<int>(snake.head_y);
-
-  // Check if there's food over here
-  if (food.x == new_x && food.y == new_y) {
-    score++;
-    PlaceFood();
-    // Grow snake and increase speed.
-    snake.GrowBody();
-    snake.speed += 0.02;
-  }
-}
-
-int Game::GetScore() const { return score; }
-int Game::GetSize() const { return snake.size; }
-
-*/

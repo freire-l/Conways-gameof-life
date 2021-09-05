@@ -9,22 +9,25 @@
 
 class Renderer{
  public:
+  /*
+    Constructor for Renderer Class, takes the sizes of both axis of the screen to be created
+    Initializes SDL, creates the window and then a new Renderer object
+  */
   Renderer(const std::size_t screen_width, const std::size_t screen_height);
 
-  ~Renderer();
+  ~Renderer();                                                                  //Destructor
 
-  void Render(Snake const snake, SDL_Point const &food);
   void Render2(Grid* grid);
   void DrawCell (Cell *i, Grid *grid);
   void UpdateWindowTitle(int score, int fps);
 
  private:
-  SDL_Window *sdl_window;
-  SDL_Renderer *sdl_renderer;
-  SDL_Surface *sdl_surface;
+  SDL_Window *sdl_window;     //Pointer to the sdl window to be created
+  SDL_Renderer *sdl_renderer; //Pointer to be renderer to be created
+  //SDL_Surface *sdl_surface;
 
-  const std::size_t screen_width;
-  const std::size_t screen_height;
+  const std::size_t screen_width;      //width of the screen in pixels
+  const std::size_t screen_height;     //height of the screen in pixels
 
 };
 

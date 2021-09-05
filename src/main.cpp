@@ -19,8 +19,9 @@
     int Grid::_offset_x = kInitial_offset_x;
     int Grid::_offset_y = kInitial_offset_y;
 
-    //Initial offset of the grid, in the x axis
+    //Max zoom out of the grid, in the x axis
     int Grid::_max_zoom_out = kMax_zoom_out_x;
+    int Grid::_max_zoom_in  = kMax_zoom_in_y;
 
     //Coordinate of the first cell to be displayed, on the upper left corner
 

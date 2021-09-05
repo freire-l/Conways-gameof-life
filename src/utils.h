@@ -16,6 +16,7 @@
   constexpr int kInitial_offset_y{0};
 
   constexpr int kMax_zoom_out_x{120};
+  constexpr int kMax_zoom_in_y{8};
 
   constexpr int kNum_cells_x{720};
   constexpr int kNum_cells_y{360};

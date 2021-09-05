@@ -8,17 +8,21 @@
 #include "renderer.h"
 #include "cell.h"
 
-//#include "snake.h"
-
-
-
 class Game {
  public:
- ///
-  //Agosto 3
-  //Game(int size_grid);
+  /*
+    Constructor for Game Class, takes the sizes of both axis of the screen to be created
+    Initializes both Grids to be used in the game, the actual grid, and the one used to compute
+    the nest state of the game
+  */
   Game (int width_grid, int height_grid);
-///
+
+  /*
+    Method that controls the game main loop, takes a reference to the controller and renderer object
+    Handles the input
+    Updates the grid
+    Renders the grid
+  */
   void Run(Controller const &controller, Renderer &renderer);
   void Update_next_grid();
 
@@ -26,84 +30,14 @@ class Game {
   void Update_cells(Cell *i);
 
  private:
-  //std::vector<Cell*>* _actual_grid;
-  //std::vector<Cell*>* _next_grid;
-  Grid* _actual_grid;
-  Grid* _next_grid;
-
-  //******* Grid drivers ********
-
-  ///
-    //Agosto 3
-    /*
-  const int _num_cells = 40;
-  int _first_cell = 0;
-  */
-
-  
-  //const int _num_cells_x = 80;
-  //const int _num_cells_y = 40;
-
-  //const int _num_cells_x = 240;
-  //const int _num_cells_y = 120;
-
-  //const int _num_cells_x = 720;
-  //const int _num_cells_y = 360;
-
-  //const int _num_cells_x = 2160;
-  //const int _num_cells_y = 1080;
-
-  //le sumas el doble, y de ahi puedes poner las nuevas celdas como celdas de inicio
-  /*
-  int _first_cell_x = 80-1;
-  int _first_cell_y = 40-1;
-  */
-  
-  ///
-  //******* Grid drivers ********  
-
-
-  bool go = false;
-
-  bool step = false;
-
-///
-  //Agosto 3
-  //int _size_grid;
-
+  Grid* _actual_grid;     //Pointer to the grid object that would be feeding the screen render                    
+  Grid* _next_grid;       //Pointer to the grid object that will hold the ccalculations for the next render
+  bool go = false;        //Variable that controls wether the game is alowed to continue or not
+  bool step = false;      //Variable that controls if the game takes a single step forward
   int _width_grid;
   int _height_grid;
 
-///
-
-
-  //const int _size_grid = 640;
 };
 
-/*
-
-class Game {
- public:
-  Game(std::size_t grid_width, std::size_t grid_height);
-  void Run(Controller const &controller, Renderer &renderer,
-           std::size_t target_frame_duration);
-  int GetScore() const;
-  int GetSize() const;
-
- private:
-  Snake snake;
-  SDL_Point food;
-
-  std::random_device dev;
-  std::mt19937 engine;
-  std::uniform_int_distribution<int> random_w;
-  std::uniform_int_distribution<int> random_h;
-
-  int score{0};
-
-  void PlaceFood();
-  void Update();
-};
-*/
 
 #endif

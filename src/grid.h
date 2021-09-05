@@ -10,25 +10,19 @@
 class Grid{
 
     public:
-        //Grid(int num_cells, int size_grid, int first_cell);
-        ///Agosto 3
-        //Grid(int num_cells, int size_grid);
-        Grid(int num_cells, int size_grid, int width_grid, int height_grid);
-        ///
+        /*
+        Constructor for Grid Class, takes the sizes in pixels of both axis of the screen to be created,
+        and the number of cells of both axis of the grid.
+        Creates the grid by initializing an array of Cell objects
+        */
+        Grid(int num_cells_x, int num_cells_y, int width_grid, int height_grid);
         int Count_Nhbr(Cell* the_cell); 
-
-//25 jul
-
-///
-        //agosto 3
-        //static int _cells_displayed;
 
         static int _cells_displayed_x;
         static int _cells_displayed_y;
 
-///
-
         static int _max_zoom_out;
+        static int _max_zoom_in;
 
         static int _first_x;
         static int _first_y;
@@ -37,68 +31,17 @@ class Grid{
         static int _offset_y;
 
     private:
-        std::vector<Cell*> _the_grid;
+        std::vector<Cell*> _the_grid;      //Array of Cell Objects, representing the grid
+        int _num_cells_x;                  //Number of cells in the grid, on the x axis
+        int _num_cells_y;                  //Number of cells in the grid, on the y axis
 
-///
-        //Agosto 3
-        //int _size_grid;
-        //int _num_cells;
-
-        
-        //int _num_cells_x = 80;
-        //int _num_cells_y = 40;
-
-        int _num_cells_x;
-        int _num_cells_y;
-
-        int _width_grid;
-        int _height_grid;
-        
-///
-
-/*25 jul
-        int _cells_displayed = 16;
-
-        int _max_zoom_out = 32;
-
-        int _first_x;
-        int _first_y;
-
-*/
-
+        int _width_grid;                  //Number of pixels for screen width
+        int _height_grid;                 //Number of pixels for screen height
 
         friend class Controller;
         friend class Renderer;
         friend class Game;
 
 };
-
-
-//***********************************************************************
-//***********************************************************************
-/*
-class Grid{
-
-    public:
-    Grid(int num_cells, int size_grid);
-    ~Grid(){};
-    void Run(Controller const &controller, Renderer &renderer);
-
-    int first_x = 0;
-    int first_y = 0;
-
-    int cells_displayed = 16;
-    
-
-    private:
-        Cell* _cell;
-        //std::vector<std::vector<Cell*>> _the_grid;
-        //std::vector<std::vector<int>> _the_grid;
-        std::vector<Cell*> _the_grid;
-        int _size_grid;
-        int _num_cells;
-
-};
-*/
 
 #endif
