@@ -91,6 +91,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
 
     Uint32 target_refresh = 1024;                  //Speed of grid update
 
+    Grid* aux =  new Grid(0,0,0,0);               //  Aux grid for update
 
     while (is_running) {                    //Main loop, controlled by is_running
   
@@ -119,12 +120,12 @@ void Game::Run(Controller const &controller, Renderer &renderer){
 
             //Making the actual grid the nest grid by creating a temporary one
             //the memory form the axu grid is deleted afterwards
-            Grid* aux =  new Grid(0,0,0,0);
+            
             aux =  _actual_grid;
             _actual_grid = _next_grid;
             _next_grid = aux;
             aux = NULL;
-            delete(aux);
+            
 
             //New start time
             start_timestamp = frame_end;
@@ -143,4 +144,5 @@ void Game::Run(Controller const &controller, Renderer &renderer){
         SDL_Delay(target_frame - frame_duration);
       }
     }
+    delete(aux);      //Delete aux grid
 }
