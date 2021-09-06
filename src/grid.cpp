@@ -2,6 +2,9 @@
 #include "SDL.h"
 #include "grid.h"
 
+//****************************************************//
+//*****         Grid Class Constructor          ******//
+//****************************************************//
 Grid::Grid(int num_cells_x, int num_cells_y, int width_grid, int height_grid): 
                           _num_cells_x(num_cells_x), _num_cells_y(num_cells_y), 
                           _width_grid(width_grid), _height_grid(height_grid){
@@ -17,56 +20,59 @@ Grid::Grid(int num_cells_x, int num_cells_y, int width_grid, int height_grid):
     }
 }
 
-
+//****************************************************//
+//*****         Count Neighbors Method          ******//
+//****************************************************//
 int Grid::Count_Nhbr(Cell* the_cell){
   int sum = 0;
-  auto x = (the_cell->_pos).x;
+  auto x = (the_cell->_pos).x;                            //  Get the x and y coordinates
   auto y = (the_cell->_pos).y;
 
+  //Check neighbors all around the cell, if neghbr is alive, add one to the count
+
   //count top left
-  if( x>0 && y>0 ){
+  if( x>0 && y>0 ){                                       //  Count top left nghbr only if we are not in the top left of the grid
     if(_the_grid[(the_cell->_index)-_num_cells_x-1]->_is_alive == true){
         sum++;
     }
-
   } 
   //count top
-  if(y>0){
+  if(y>0){                                                //  Count top nghbr only if we are not on top of the grid
     if(_the_grid[(the_cell->_index)-_num_cells_x]->_is_alive == true){
       sum++;   
     } 
   }
   //count top right
-  if( y>0 && x<(_num_cells_x-1) ){
+  if( y>0 && x<(_num_cells_x-1) ){                        //  Count Top right nghbr only if we are are not on top right of the grid
     if(_the_grid[(the_cell->_index)-_num_cells_x+1]->_is_alive == true){
       sum++;
     }
   } 
-  //count right  
+  //count right                                           //  Count right nghbr only if we are are not right of the grid 
   if(x<(_num_cells_x-1)){
     if(_the_grid[(the_cell->_index)+1]->_is_alive == true){
       sum++; 
     }   
   }
-  //count bottom right
+  //count bottom right                                    //  Count bottom right nghbr only if we are are not on top right of the grid
   if(y<(_num_cells_y-1) && x<(_num_cells_x-1)){
     if(_the_grid[(the_cell->_index)+_num_cells_x+1]->_is_alive == true){
       sum++;   
     } 
   }
-  //count bottom
+  //count bottom                                          //  Count bottom nghbr only if we are are not on the bottom of the grid
   if(y<(_num_cells_y-1)){
     if(_the_grid[(the_cell->_index)+_num_cells_x]->_is_alive == true){
       sum++;    
     }
   }
-  //count bottom left
+  //count bottom left                                     //  Count bottom left nghbr only if we are are not on the bottom left corner of the grid
   if( x>0 && y<(_num_cells_y-1) ){
     if(_the_grid[(the_cell->_index)+_num_cells_x-1]->_is_alive == true){
       sum++;
     }
   } 
-  //count left
+  //count left                                            //  Count left nghbr only if we are are not on the left of the grid
   if(x>0){
     if(_the_grid[(the_cell->_index)-1]->_is_alive == true){
       sum++;

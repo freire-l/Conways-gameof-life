@@ -9,16 +9,16 @@
 
 class Renderer{
  public:
-  /*
-    Constructor for Renderer Class, takes the sizes of both axis of the screen to be created
-    Initializes SDL, creates the window and then a new Renderer object
-  */
-  Renderer(const std::size_t screen_width, const std::size_t screen_height);
+  Renderer(const std::size_t screen_width, const std::size_t screen_height);    //  Constructor for Renderer Class, takes the sizes of both axis of
+                                                                                //  the screen to be created
+                                                                                //  Initializes SDL, creates the window and then a new Renderer object
 
-  ~Renderer();                                                                  //Destructor
+  ~Renderer();                                                                  //  Destructor
 
-  void Render2(Grid* grid);
-  void DrawCell (Cell *i, Grid *grid);
+  void Render2(Grid* grid);                                                     //  Method that renders a grid
+
+  void DrawCell (Cell *i, Grid *grid);                                          //  Method that renders a specific Cell
+
   void UpdateWindowTitle(int score, int fps);
 
  private:

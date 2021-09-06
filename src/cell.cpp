@@ -15,11 +15,15 @@ Cell::Cell(int x, int y, int index){
     _index = index;     //corresponding index in the grid array
 }
 
+//****************************************************//
+//*****             Cell live setter            ******//
+//****************************************************//
 void Cell::set_life(bool value){ _is_alive = value;}
-bool Cell::check_life(){return _is_alive;}
 
-int Cell::get_x(){return _pos.x;}
-int Cell::get_y(){return _pos.y;}
+//****************************************************//
+//*****             Cell live getter            ******//
+//****************************************************//
+bool Cell::check_life(){return _is_alive;}
 
 //****************************************************//
 //*****           Handle event Method           ******//

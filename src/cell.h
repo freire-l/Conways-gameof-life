@@ -7,29 +7,21 @@
 
 class Cell{
     public:
-        /*
-            Constructor for Cell Class, takes the corresponding x and y coordinated of the cell, and the
-            corresponding index in the grid array
-        */
-        Cell(int x, int y, int index);
 
-        /*
-            Method that can detect if a the cell has being clicked, so it can toggle its life acoordingly
-        */
-        void handleEvent(int first_x, int first_y, int offset_x, int offset_y);
+        Cell(int x, int y, int index);                                              //  Constructor for Cell Class, takes the corresponding
+                                                                                    //  x and y coordinated of the cell, and the
+                                                                                    //  corresponding index in the grid array
 
-        /*
-            Method that toggles a Cell between alive and dead
-        */
-        void toggle_life();
 
-        void set_life(bool value);
-        bool check_life();
+        void handleEvent(int first_x, int first_y, int offset_x, int offset_y);     //  Method that can detect if a the cell has being clicked
+                                                                                    //  so it can toggle its life acoordingly
 
-        int get_x();
-        int get_y();
 
-        void render();
+        void toggle_life();                                                          // Method that toggles a Cell between alive and dead
+
+        void set_life(bool value);                                                   // Cell live setter
+
+        bool check_life();                                                           // Cell live getter
 
         static int _width;
         static int _height;

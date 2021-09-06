@@ -13,57 +13,56 @@ Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_gr
   _next_grid   = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
 }
 
+//****************************************************//
+//*****       Update cell wrapper Method        ******//
+//****************************************************//
 void Game::Update_cells_wrapper(Game* game, Cell *i){
   game->Update_cells(i);
 }
 
+//****************************************************//
+//*****            Update cell Method           ******//
+//****************************************************//
 void Game::Update_cells(Cell *i){
-        int sum = _actual_grid->Count_Nhbr(i);
+        int sum = _actual_grid->Count_Nhbr(i);              //  Count the number of neighbors the current cell has
         bool is_alive = false;
         bool new_live = false;
         //update value of next "point"
 
         //accessing the array
-        is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();
+        is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();   // cchecking is current cell is alive
         //conditions to game of life
-        if(is_alive){
-          if(sum<=1 || sum>=4){
-            new_live = false;
-            //(_next_grid->_the_grid)[i->_index]->set_life(false);
-            }
-          else if(sum == 2 || sum ==3){
-            new_live = true;
-            //(_next_grid->_the_grid)[i->_index]->set_life(true);
-            }
-          else {
-            new_live = false;
-            //(_next_grid->_the_grid)[i->_index]->set_life(false);
-          }
+        if(is_alive){                                         //  Conditions if the cell is currently alive
+          if(sum<=1 || sum>=4){ new_live = false; }
 
-        }else{
-          if(sum ==3){
-            new_live = true;
-            //(_next_grid->_the_grid)[i->_index]->set_life(true);
-          } else{
-            new_live = false;
-            //(_next_grid->_the_grid)[i->_index]->set_life(false);
-          }
+          else if(sum == 2 || sum ==3){ new_live = true; }
+
+          else { new_live = false; }
+
+        }else{                                                //  Conditions if the cell is currently dead
+          if(sum ==3){ new_live = true; } 
+
+          else{ new_live = false; }
         }
+
         //writing to array
-        (_next_grid->_the_grid)[i->_index]->set_life(new_live);
+        (_next_grid->_the_grid)[i->_index]->set_life(new_live);         //setting the value of the cell for the next cycle
 
         //possible reasons:
         //data race, creating to many threads
 }
 ///
 
+//****************************************************//
+//*****         Update Next Grid Method         ******//
+//****************************************************//
 void Game::Update_next_grid(){
-      auto point = _next_grid->_the_grid;
+      //auto point = _next_grid->_the_grid;
 
-      //std::vector <std::thread> threads;/////
-      for (auto i : _actual_grid->_the_grid){
+      //std::vector <std::thread> threads;/////    Multithreading
+      for (auto i : _actual_grid->_the_grid){                       //Traverse trough the array updating the corresponging cell in the next grid
 
-            //threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////
+            //threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////     Multithreading
             Update_cells(i);
       }
 
@@ -73,7 +72,6 @@ void Game::Update_next_grid(){
             t.join();
           }
         */
-
 }
 
 //****************************************************//
@@ -117,7 +115,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       if(go==true || step == true){
           if ((frame_end - start_timestamp >= target_refresh) || (go == false && step == true)) {      //update if time passed matches the refresh rate
 
-            Update_next_grid();     //Update the next grid based on the current grid values <-----------YOU ARE HERE
+            Update_next_grid();     //Update the next grid based on the current grid values
 
             //Making the actual grid the nest grid by creating a temporary one
             //the memory form the axu grid is deleted afterwards

@@ -10,13 +10,13 @@
 class Grid{
 
     public:
-        /*
-        Constructor for Grid Class, takes the sizes in pixels of both axis of the screen to be created,
-        and the number of cells of both axis of the grid.
-        Creates the grid by initializing an array of Cell objects
-        */
-        Grid(int num_cells_x, int num_cells_y, int width_grid, int height_grid);
-        int Count_Nhbr(Cell* the_cell); 
+
+        Grid(int num_cells_x, int num_cells_y, int width_grid, int height_grid);            //  Constructor for Grid Class, takes the sizes in pixels of 
+                                                                                            //  both axis of the screen to be created,
+                                                                                            //  and the number of cells of both axis of the grid.
+                                                                                            //  Creates the grid by initializing an array of Cell objects
+
+        int Count_Nhbr(Cell* the_cell);                                                     //  Method that counts the live neighbors a cell has
 
         static int _cells_displayed_x;
         static int _cells_displayed_y;

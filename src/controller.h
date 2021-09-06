@@ -10,11 +10,10 @@ class Grid;
 
 class Controller {
  public:
-  /*
-    Method that handles the user input and updates all the corresponding variables that
-    are passed by reference to it
-  */
-  void HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const;
+
+  void HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const;       //  Method that handles the user input and updates
+                                                                                                          //  all the corresponding variables that
+                                                                                                          //  are passed by reference to it 
 
 };
 
