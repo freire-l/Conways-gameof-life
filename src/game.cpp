@@ -124,7 +124,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
             aux =  _actual_grid;
             _actual_grid = _next_grid;
             _next_grid = aux;
-            aux = NULL;
+            //aux = NULL;
             
 
             //New start time
