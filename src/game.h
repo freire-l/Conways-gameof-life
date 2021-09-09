@@ -3,6 +3,7 @@
 
 #include <random>
 #include <thread>
+#include <memory>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
@@ -23,14 +24,18 @@ class Game {
   void Update_next_grid();                                    //  Method that handles next grid computation based on current grid values
 
   void Update_cells(Cell *i);                                 //  Method that counts the number of alive neighbors in a current cell and decides
+  //void Update_cells(std::shared_ptr<Cell> i);                                 //  Method that counts the number of alive neighbors in a current cell and decides
                                                               //  wether that cell should be alive or not in the next cycle 
 
   static void Update_cells_wrapper(Game *game,Cell *i);       //  Wrapper for concurrent excecution
+  //static void Update_cells_wrapper(Game* game, std::shared_ptr<Cell> i); //  Wrapper for concurrent excecution
 
 
  private:
-  Grid* _actual_grid;     //Pointer to the grid object that would be feeding the screen render                    
-  Grid* _next_grid;       //Pointer to the grid object that will hold the calculations for the next render
+  //Grid* _actual_grid;     //Pointer to the grid object that would be feeding the screen render                    
+  //Grid* _next_grid;       //Pointer to the grid object that will hold the calculations for the next render
+  std::shared_ptr<Grid> _actual_grid;     //Pointer to the grid object that would be feeding the screen render 
+  std::shared_ptr<Grid> _next_grid;       //Pointer to the grid object that will hold the calculations for the next render
   bool go = false;        //Variable that controls wether the game is alowed to continue or not
   bool step = false;      //Variable that controls if the game takes a single step forward
   int _width_grid;

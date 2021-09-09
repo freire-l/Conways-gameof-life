@@ -9,21 +9,25 @@
 
 Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_grid(height_grid){
   //Creating actual grid and next grid, both with the same dimentions
-  _actual_grid = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
-  _next_grid   = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
+  //_actual_grid = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
+  //_next_grid   = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
+  _actual_grid = std::make_shared<Grid>(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
+  _next_grid   = std::make_shared<Grid>(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
 }
 
 //****************************************************//
 //*****       Update cell wrapper Method        ******//
 //****************************************************//
 void Game::Update_cells_wrapper(Game* game, Cell *i){
+//void Game::Update_cells_wrapper(Game* game, std::shared_ptr<Cell> i){
   game->Update_cells(i);
 }
 
 //****************************************************//
 //*****            Update cell Method           ******//
 //****************************************************//
-void Game::Update_cells(Cell *i){
+void Game::Update_cells(Cell *i){  
+//void Game::Update_cells(std::shared_ptr<Cell> i){
         int sum = _actual_grid->Count_Nhbr(i);              //  Count the number of neighbors the current cell has
         bool is_alive = false;
         bool new_live = false;
@@ -91,7 +95,9 @@ void Game::Run(Controller const &controller, Renderer &renderer){
 
     Uint32 target_refresh = 1024;                  //Speed of grid update
 
-    Grid* aux =  new Grid(0,0,0,0);               //  Aux grid for update
+    //Grid* aux =  new Grid(0,0,0,0);               //  Aux grid for update
+
+    std::shared_ptr<Grid> aux = std::make_shared<Grid>(0,0,0,0);
 
     while (is_running) {                    //Main loop, controlled by is_running
   
@@ -144,5 +150,5 @@ void Game::Run(Controller const &controller, Renderer &renderer){
         SDL_Delay(target_frame - frame_duration);
       }
     }
-    delete(aux);      //Delete aux grid
+    //delete(aux);      //Delete aux grid
 }

@@ -38,13 +38,17 @@ Renderer::Renderer(const std::size_t screen_width, const std::size_t screen_heig
 Renderer::~Renderer() {
   SDL_DestroyWindow(sdl_window);
   sdl_window = NULL;
+  SDL_DestroyRenderer(sdl_renderer);
+  sdl_window = NULL;
   SDL_Quit();
 }
 
 //****************************************************//
 //*****            Draw Cell Method             ******//
 //****************************************************//
-void Renderer::DrawCell (Cell *cell, Grid *grid){
+//void Renderer::DrawCell (Cell *cell, Grid *grid){
+//void Renderer::DrawCell (std::shared_ptr <Cell> cell, Grid *grid){
+void Renderer::DrawCell (Cell *cell, std::shared_ptr <Grid> grid){
 
     int first_x = grid ->_first_x;
     int first_y = grid ->_first_y;
@@ -77,7 +81,8 @@ void Renderer::DrawCell (Cell *cell, Grid *grid){
 //****************************************************//
 //*****               Render Method             ******//
 //****************************************************//
-void Renderer::Render2(Grid* grid){
+//void Renderer::Render2(Grid* grid){
+void Renderer::Render2(std::shared_ptr <Grid> grid){
   // Clear screen
 
           //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); //BLACK

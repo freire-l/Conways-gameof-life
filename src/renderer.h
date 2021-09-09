@@ -15,9 +15,13 @@ class Renderer{
 
   ~Renderer();                                                                  //  Destructor
 
-  void Render2(Grid* grid);                                                     //  Method that renders a grid
+  //void Render2(Grid* grid);                                                     //  Method that renders a grid
+  void Render2(std::shared_ptr <Grid> grid);                                                     //  Method that renders a grid
 
-  void DrawCell (Cell *i, Grid *grid);                                          //  Method that renders a specific Cell
+
+  //void DrawCell (Cell *i, Grid *grid);                                          //  Method that renders a specific Cell
+  void DrawCell (Cell *i, std::shared_ptr <Grid> grid);                                          //  Method that renders a specific Cell
+  //void DrawCell (std::shared_ptr <Cell> cell, Grid *grid);                                          //  Method that renders a specific Cell
 
   void UpdateWindowTitle(int score, int fps);
 

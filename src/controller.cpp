@@ -7,7 +7,8 @@
 //*****     Controlled Handle Input Method      ******//
 //****************************************************//
 
-void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const{   //Take in control references
+//void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const{   //Take in control references
+void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, Uint32 &target_refresh, bool &go, bool &step) const{   //Take in control references
   SDL_Event e;
   //Limits of grid update speed
   Uint32 lower_limit = 32;

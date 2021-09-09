@@ -1,7 +1,7 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <random>
+
 #include "SDL.h"
 #include "controller.h"
 
@@ -16,7 +16,12 @@ class Grid{
                                                                                             //  and the number of cells of both axis of the grid.
                                                                                             //  Creates the grid by initializing an array of Cell objects
 
+        ~Grid();
+
+        Grid &operator=(const Grid &source);
+
         int Count_Nhbr(Cell* the_cell);                                                     //  Method that counts the live neighbors a cell has
+        //int Count_Nhbr(std::shared_ptr <Cell> the_cell);                                                     //  Method that counts the live neighbors a cell has
 
         static int _cells_displayed_x;
         static int _cells_displayed_y;
@@ -32,6 +37,7 @@ class Grid{
 
     private:
         std::vector<Cell*> _the_grid;      //Array of Cell Objects, representing the grid
+        //std::vector<std::shared_ptr<Cell>> _the_grid;      //Array of Cell Objects, representing the grid
         int _num_cells_x;                  //Number of cells in the grid, on the x axis
         int _num_cells_y;                  //Number of cells in the grid, on the y axis
 
