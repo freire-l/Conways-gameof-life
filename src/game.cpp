@@ -32,9 +32,12 @@ void Game::Update_cells(Cell *i){
         bool is_alive = false;
         bool new_live = false;
         //update value of next "point"
-
+std::unique_lock<std::mutex> lck (_mutex);
         //accessing the array
-        is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();   // cchecking is current cell is alive
+        //_mutex.lock();
+        is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();   // checking is current cell is alive
+        //_mutex.unlock();
+        lck.unlock();
         //conditions to game of life
         if(is_alive){                                         //  Conditions if the cell is currently alive
           if(sum<=1 || sum>=4){ new_live = false; }
@@ -50,32 +53,64 @@ void Game::Update_cells(Cell *i){
         }
 
         //writing to array
+        //_mutex.lock();
+        lck.lock();
         (_next_grid->_the_grid)[i->_index]->set_life(new_live);         //setting the value of the cell for the next cycle
+        //_mutex.unlock();
+        lck.unlock();
 
         //possible reasons:
         //data race, creating to many threads
 }
 ///
 
+void Game::Update_cells2(int start, int end){
+  for (int k = start; k<=end; k++){
+    Update_cells(_actual_grid->_the_grid[k]);
+  }
+}
+
+void Game::Update_bunch_wrapper(Game* game, int start, int end){
+//void Game::Update_cells_wrapper(Game* game, std::shared_ptr<Cell> i){
+  game->Update_cells2(start, end);
+
+}
+
 //****************************************************//
 //*****         Update Next Grid Method         ******//
 //****************************************************//
 void Game::Update_next_grid(){
-      //auto point = _next_grid->_the_grid;
+      
+      std::vector <std::thread> threads;/////    Multithreading
 
-      //std::vector <std::thread> threads;/////    Multithreading
-      for (auto i : _actual_grid->_the_grid){                       //Traverse trough the array updating the corresponging cell in the next grid
+      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 0, 64799));//////     Multithreading
+      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 64800, 129599));//////     Multithreading
+      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 129600, 194399));//////     Multithreading
+      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 194400, 259199));//////     Multithreading
 
-            //threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////     Multithreading
-            Update_cells(i);
-      }
-
-        //Multithreading
-        /*
           for (auto &t : threads){
             t.join();
           }
-        */
+          /*
+      //auto point = _next_grid->_the_grid;
+      int a = 0;
+      std::cout<<"Hey 1"<<std::endl;
+      std::vector <std::thread> threads;/////    Multithreading
+      for (auto i : _actual_grid->_the_grid){                       //Traverse trough the array updating the corresponging cell in the next grid
+
+            threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////     Multithreading
+            //Update_cells(i);
+            std::cout<<"Thread "<< a++ <<std::endl;
+      }
+      std::cout<<"Hey 2"<<std::endl;
+
+        //Multithreading
+        
+          for (auto &t : threads){
+            t.join();
+          }
+       std::cout<<"Hey 3"<<std::endl; 
+       */
 }
 
 //****************************************************//

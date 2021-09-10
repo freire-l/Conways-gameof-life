@@ -270,5 +270,7 @@ CMakeFiles/Conway_test.dir/src/main.cpp.o: \
  /home/luisf/workspace/Conways_Game_of_Life/src/game.h \
  /usr/include/c++/9/thread /usr/include/c++/9/chrono \
  /usr/include/c++/9/ratio /usr/include/c++/9/ctime \
- /usr/include/c++/9/bits/parse_numbers.h \
+ /usr/include/c++/9/bits/parse_numbers.h /usr/include/c++/9/mutex \
+ /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/renderer.h

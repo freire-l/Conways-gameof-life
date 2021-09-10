@@ -4,6 +4,7 @@
 #include <random>
 #include <thread>
 #include <memory>
+#include <mutex>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
@@ -27,9 +28,10 @@ class Game {
   //void Update_cells(std::shared_ptr<Cell> i);                                 //  Method that counts the number of alive neighbors in a current cell and decides
                                                               //  wether that cell should be alive or not in the next cycle 
 
+  void Update_cells2(int start, int end);
   static void Update_cells_wrapper(Game *game,Cell *i);       //  Wrapper for concurrent excecution
   //static void Update_cells_wrapper(Game* game, std::shared_ptr<Cell> i); //  Wrapper for concurrent excecution
-
+static void Update_bunch_wrapper(Game* game, int start, int end);
 
  private:
   //Grid* _actual_grid;     //Pointer to the grid object that would be feeding the screen render                    
@@ -40,6 +42,8 @@ class Game {
   bool step = false;      //Variable that controls if the game takes a single step forward
   int _width_grid;
   int _height_grid;
+
+  std::mutex _mutex;
 
 };
 
