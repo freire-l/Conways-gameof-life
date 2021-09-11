@@ -53,7 +53,9 @@ Grid &Grid::operator=(const Grid &source){
   _height_grid= source._height_grid;
   return *this;
 }
-
+void Grid::Fill_Grid(){
+  std::cout << "***** Filling Grid ********"<<std::endl;
+}
 
 //****************************************************//
 //*****         Count Neighbors Method          ******//

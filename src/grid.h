@@ -20,6 +20,8 @@ class Grid{
 
         Grid &operator=(const Grid &source);
 
+        void Fill_Grid();
+        
         int Count_Nhbr(Cell* the_cell);                                                     //  Method that counts the live neighbors a cell has
         //int Count_Nhbr(std::shared_ptr <Cell> the_cell);                                                     //  Method that counts the live neighbors a cell has
 
