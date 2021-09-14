@@ -82,11 +82,15 @@ void Game::Update_bunch_wrapper(Game* game, int start, int end){
 void Game::Update_next_grid(){
       
       std::vector <std::thread> threads;/////    Multithreading
-
+      /*
       threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 0, 64799));//////     Multithreading
       threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 64800, 129599));//////     Multithreading
       threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 129600, 194399));//////     Multithreading
       threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 194400, 259199));//////     Multithreading
+      */
+
+      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 0, 129599));//////     Multithreading
+      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 129600, 129599));//////     Multithreading
 
           for (auto &t : threads){
             t.join();
@@ -141,7 +145,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       // Game main loop Input, Update, Render - the main game loop.
 
       //**** Input   *********
-      controller.HandleInput2(is_running, _actual_grid, target_refresh, go, step);     //Method takes references to all game drivers, so they can be 
+      controller.HandleInput2(is_running, _actual_grid, _next_grid, target_refresh, go, step, skip_update);     //Method takes references to all game drivers, so they can be 
                                                                                        // affected by the input
 
       frame_end = SDL_GetTicks();            //Get current time
@@ -157,7 +161,11 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       if(go==true || step == true){
           if ((frame_end - start_timestamp >= target_refresh) || (go == false && step == true)) {      //update if time passed matches the refresh rate
 
-            Update_next_grid();     //Update the next grid based on the current grid values
+            
+            if(skip_update !=true)
+              Update_next_grid();     //Update the next grid based on the current grid values
+            else
+              skip_update = false;
 
             //Making the actual grid the nest grid by creating a temporary one
             //the memory form the axu grid is deleted afterwards
@@ -173,8 +181,9 @@ void Game::Run(Controller const &controller, Renderer &renderer){
 
           }
           // Reset the step variable if it is active, so no more than one step is taken
-          if (step == true)
+          if (step == true){
             step = false;
+          }
       }
 
       //******   Render   *********

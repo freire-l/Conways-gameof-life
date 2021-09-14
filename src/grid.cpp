@@ -55,6 +55,15 @@ Grid &Grid::operator=(const Grid &source){
 }
 void Grid::Fill_Grid(){
   std::cout << "***** Filling Grid ********"<<std::endl;
+  //fill values for clearing
+  for (auto i : _the_grid){
+    //if(((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))&&((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))){
+      //DrawCell( i, grid);         //Render a Cell
+      i->set_life(false);
+    //}
+  }
+
+  //if 1, fill the values for 1
 }
 
 //****************************************************//

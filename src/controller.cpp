@@ -8,7 +8,7 @@
 //****************************************************//
 
 //void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const{   //Take in control references
-void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, Uint32 &target_refresh, bool &go, bool &step) const{   //Take in control references
+void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, Uint32 &target_refresh, bool &go, bool &step, bool &skip_update) const{   //Take in control references
   SDL_Event e;
   //Limits of grid update speed
   Uint32 lower_limit = 32;
@@ -127,6 +127,21 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, Uint32
               //The dimentions of cells, in pixels. Cells are squares so width and height are the same
               Cell::_width = (int) (grid->_width_grid/grid->_cells_displayed_x);
               Cell::_height = Cell::_width;  
+            }
+          break;
+
+          //***************************
+          case SDLK_c:  
+            if(go == false){
+              next_grid->Fill_Grid();
+              step = true;
+              skip_update = true;
+            }
+          break;
+
+          case SDLK_1: 
+            if(go == false){ 
+              std::cout<<"Number 1 pressed"<<std::endl;
             }
           break;
 

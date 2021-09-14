@@ -40,6 +40,7 @@ static void Update_bunch_wrapper(Game* game, int start, int end);
   std::shared_ptr<Grid> _next_grid;       //Pointer to the grid object that will hold the calculations for the next render
   bool go = false;        //Variable that controls wether the game is alowed to continue or not
   bool step = false;      //Variable that controls if the game takes a single step forward
+  bool skip_update = false;
   int _width_grid;
   int _height_grid;
 
