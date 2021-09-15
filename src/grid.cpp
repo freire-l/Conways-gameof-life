@@ -1,5 +1,9 @@
 #include <iostream>
 #include <memory>
+#include <sstream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
 #include "SDL.h"
 #include "grid.h"
 
@@ -53,17 +57,66 @@ Grid &Grid::operator=(const Grid &source){
   _height_grid= source._height_grid;
   return *this;
 }
-void Grid::Fill_Grid(){
+void Grid::Fill_Grid(int select){
   std::cout << "***** Filling Grid ********"<<std::endl;
   //fill values for clearing
-  for (auto i : _the_grid){
-    //if(((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))&&((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))){
-      //DrawCell( i, grid);         //Render a Cell
-      i->set_life(false);
-    //}
-  }
+  switch (select){
+    case 0:
+      for (auto i : _the_grid){
+        i->set_life(false);
+      }
+    break;
 
+    case 1:
+        std::string line;
+        std::vector <int> parse;
+        std::string value;
+
+        std::ifstream stream("../src/demonoid.txt");
+        if (stream.is_open()) {
+          while(std::getline(stream, line)){
+            std::replace(line.begin(), line.end(), ',', ' ');
+            std::istringstream linestream(line);
+            //fill out the vector with values parsed from the line
+            while (linestream >> value)
+            {
+              parse.push_back(std::stoi(value));
+            }
+          }
+        }
+
+        int traverse = 0;
+        for (auto i : _the_grid){
+          //std::cout << "***** Filling Grid  4  ********"<<std::endl;
+          if(((i->_pos.x>=_first_x)&&(i->_pos.x<(_first_x+_cells_displayed_x)))&&((i->_pos.y>=_first_y)&&(i->_pos.y<(_first_y+_cells_displayed_y)))){
+              if(parse[traverse] == 0)
+                i->set_life(false);
+              else
+                i->set_life(true);
+              traverse++;
+          }
+        }
+    break;
+  }
   //if 1, fill the values for 1
+}
+
+void Grid::Reset_Grid_Scope(){
+    //Initial height and width of cells to be displayed
+    Cell::_height = kScreen_height/kInitial_display_cell_y; 
+    Cell::_width = kScreen_width/kInitial_display_cell_x;
+
+    //Initial number of cells displayed in both axis
+    Grid::_cells_displayed_x = kInitial_display_cell_x;
+    Grid::_cells_displayed_y = kInitial_display_cell_y;
+
+    //Initial offset of the grid in both axis
+    Grid::_offset_x = kInitial_offset_x;
+    Grid::_offset_y = kInitial_offset_y;
+
+    //Coordinate of the first cell to be displayed, on the upper left corner
+    Grid::_first_x = (kNum_cells_x/3)-1; //240
+    Grid::_first_y = (kNum_cells_y/3)-1; //120
 }
 
 //****************************************************//

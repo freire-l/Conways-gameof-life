@@ -133,7 +133,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           //***************************
           case SDLK_c:  
             if(go == false){
-              next_grid->Fill_Grid();
+              next_grid->Fill_Grid(0);
               step = true;
               skip_update = true;
             }
@@ -142,6 +142,10 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_1: 
             if(go == false){ 
               std::cout<<"Number 1 pressed"<<std::endl;
+              step = true;
+              skip_update = true;
+              next_grid->Reset_Grid_Scope();
+              next_grid->Fill_Grid(1);
             }
           break;
 

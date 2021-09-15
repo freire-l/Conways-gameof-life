@@ -258,8 +258,8 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o: \
  /home/luisf/workspace/Conways_Game_of_Life/src/snake.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/cell.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/grid.h \
- /home/luisf/workspace/Conways_Game_of_Life/src/renderer.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/utils.h \
+ /home/luisf/workspace/Conways_Game_of_Life/src/renderer.h \
  /usr/include/c++/9/iostream /usr/include/c++/9/ostream \
  /usr/include/c++/9/ios /usr/include/c++/9/bits/ios_base.h \
  /usr/include/c++/9/bits/locale_classes.h \

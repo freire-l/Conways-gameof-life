@@ -4,7 +4,7 @@
 
 #include "SDL.h"
 #include "controller.h"
-
+#include "utils.h"
 #include "cell.h"
 
 class Grid{
@@ -20,7 +20,9 @@ class Grid{
 
         Grid &operator=(const Grid &source);
 
-        void Fill_Grid();
+        void Fill_Grid(int select);
+
+        void Reset_Grid_Scope();
         
         int Count_Nhbr(Cell* the_cell);                                                     //  Method that counts the live neighbors a cell has
         //int Count_Nhbr(std::shared_ptr <Cell> the_cell);                                                     //  Method that counts the live neighbors a cell has

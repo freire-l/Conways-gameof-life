@@ -153,9 +153,20 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o: \
  /usr/include/c++/9/bits/shared_ptr_atomic.h \
  /usr/include/c++/9/bits/atomic_base.h \
  /usr/include/c++/9/bits/atomic_lockfree_defines.h \
- /usr/include/c++/9/backward/auto_ptr.h /usr/include/SDL2/SDL.h \
- /usr/include/SDL2/SDL_main.h /usr/include/SDL2/SDL_stdinc.h \
- /usr/include/SDL2/SDL_config.h \
+ /usr/include/c++/9/backward/auto_ptr.h /usr/include/c++/9/sstream \
+ /usr/include/c++/9/bits/sstream.tcc /usr/include/c++/9/fstream \
+ /usr/include/c++/9/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+ /usr/include/c++/9/bits/fstream.tcc /usr/include/c++/9/vector \
+ /usr/include/c++/9/bits/stl_vector.h \
+ /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
+ /usr/include/c++/9/algorithm /usr/include/c++/9/bits/stl_algo.h \
+ /usr/include/c++/9/bits/algorithmfwd.h \
+ /usr/include/c++/9/bits/stl_heap.h \
+ /usr/include/c++/9/bits/uniform_int_dist.h /usr/include/c++/9/limits \
+ /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
+ /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \
  /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h \
  /usr/include/SDL2/SDL_platform.h /usr/include/SDL2/begin_code.h \
  /usr/include/SDL2/close_code.h /usr/include/c++/9/stdlib.h \
@@ -257,12 +268,9 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o: \
  /home/luisf/workspace/Conways_Game_of_Life/src/grid.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/controller.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/snake.h \
- /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_vector.h \
- /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
  /home/luisf/workspace/Conways_Game_of_Life/src/cell.h \
- /usr/include/c++/9/random /usr/include/c++/9/limits \
- /usr/include/c++/9/bits/random.h \
- /usr/include/c++/9/bits/uniform_int_dist.h \
+ /usr/include/c++/9/random /usr/include/c++/9/bits/random.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/opt_random.h \
  /usr/include/c++/9/bits/random.tcc /usr/include/c++/9/numeric \
- /usr/include/c++/9/bits/stl_numeric.h
+ /usr/include/c++/9/bits/stl_numeric.h \
+ /home/luisf/workspace/Conways_Game_of_Life/src/utils.h

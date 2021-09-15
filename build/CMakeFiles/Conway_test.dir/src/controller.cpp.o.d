@@ -249,6 +249,7 @@ CMakeFiles/Conway_test.dir/src/controller.cpp.o: \
  /usr/include/c++/9/bits/random.tcc /usr/include/c++/9/numeric \
  /usr/include/c++/9/bits/stl_numeric.h \
  /home/luisf/workspace/Conways_Game_of_Life/src/grid.h \
+ /home/luisf/workspace/Conways_Game_of_Life/src/utils.h \
  /usr/include/c++/9/iostream /usr/include/c++/9/ostream \
  /usr/include/c++/9/ios /usr/include/c++/9/bits/ios_base.h \
  /usr/include/c++/9/bits/locale_classes.h \
