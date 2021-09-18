@@ -46,8 +46,6 @@ Renderer::~Renderer() {
 //****************************************************//
 //*****            Draw Cell Method             ******//
 //****************************************************//
-//void Renderer::DrawCell (Cell *cell, Grid *grid){
-//void Renderer::DrawCell (std::shared_ptr <Cell> cell, Grid *grid){
 void Renderer::DrawCell (Cell *cell, std::shared_ptr <Grid> grid){
 
     int first_x = grid ->_first_x;
@@ -81,9 +79,7 @@ void Renderer::DrawCell (Cell *cell, std::shared_ptr <Grid> grid){
 //****************************************************//
 //*****               Render Method             ******//
 //****************************************************//
-//void Renderer::Render2(Grid* grid){
 void Renderer::Render2(std::shared_ptr <Grid> grid){
-  // Clear screen
 
           //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); //BLACK
           //SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF); //YELLOW
@@ -92,7 +88,7 @@ void Renderer::Render2(std::shared_ptr <Grid> grid){
   //  Set draw color
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0xFF, 0xFF); //WHITE
 
-  //  LEAR
+  //  Clear Screen
   SDL_RenderClear(sdl_renderer);
 
   //Traverse the grid array, only display cells that are inside the corrently zoomed area    
@@ -101,7 +97,6 @@ void Renderer::Render2(std::shared_ptr <Grid> grid){
       DrawCell( i, grid);         //Render a Cell
     }
   }
-
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }

@@ -23,7 +23,6 @@ Grid::Grid(int num_cells_x, int num_cells_y, int width_grid, int height_grid):
       x = (i%_num_cells_x);                   //Computing the corresponsing x coordinate
       y = (i/_num_cells_x);                   //Computing the corresponding y coordinate
       _the_grid.push_back(new Cell(x, y, i)); //Pushing back a Cell with the corresponding x and y coordinates, and the index in the grid array
-      //_the_grid.push_back(std::make_shared<Cell> (x, y, i)); //Pushing back a Cell with the corresponding x and y coordinates, and the index in the grid array
     }
 }
 
@@ -34,7 +33,6 @@ Grid::~Grid(){
   for (auto i : _the_grid){
     delete i;
   }
-
   _the_grid.clear();
 }
 
@@ -45,9 +43,6 @@ Grid &Grid::operator=(const Grid &source){
   if (this == &source){
     return *this;
   }
-  /*for (auto i : _the_grid){
-    delete i;
-  }*/
 
   _the_grid = source._the_grid;
 
@@ -59,114 +54,72 @@ Grid &Grid::operator=(const Grid &source){
   return *this;
 }
 
+//****************************************************//
+//*****           Clear Grid Method             ******//
+//****************************************************//
 void Grid::Clear_Grid(){
   for (auto i : _the_grid){
     i->set_life(false);
   }
 }
 
+//****************************************************//
+//*****            Fill Grid Method             ******//
+//****************************************************//
 bool Grid::Fill_Grid(int select){
-  std::cout << "***** Filling Grid ********"<<std::endl;
-  //fill values for clearing
-  //switch (select){
-    //case 0:
-    /*
-    if(select == -1){
-      for (auto i : _the_grid){
-        i->set_life(false);
-      }
-    }
-    */
-    //break;
-    //else{
-    //case 1:
         std::string line;
         std::vector <int> parse;
         std::string value;
 
         std::ifstream stream(kFilePath+std::to_string(select)+kFileExt);
-        if (stream.is_open()) {
+        if (stream.is_open()) {                                                 //Check if file could be opened
           while(std::getline(stream, line)){
-            std::replace(line.begin(), line.end(), ',', ' ');
+            std::replace(line.begin(), line.end(), ',', ' ');                   //Replace commas with spaces
             std::istringstream linestream(line);
             //fill out the vector with values parsed from the line
-            while (linestream >> value)
+            while (linestream >> value)                                         //Pop tokens and store them in the vector
             {
-              parse.push_back(std::stoi(value));
+              if(value == "0" || value == "1")                                //Check for data corruption, only accept 1 or 0
+                parse.push_back(std::stoi(value));
             }
           }
 
-          //Check if the parse was done correctly
-          int traverse = 0;
-          for (auto i : _the_grid){
-                if(parse[traverse] == 0)
-                  i->set_life(false);
-                else
-                  i->set_life(true);
-                traverse++;
-          }
-          return true;
-        }
-        else{
-          //std::cout<<"There was an error reading the file"<<std::endl;
-          return false;
-        }
-    //}
-    /*
-        std::string line;
-        std::vector <int> parse;
-        std::string value;
-
-        std::ifstream stream("../src/demonoid.txt");
-        if (stream.is_open()) {
-          while(std::getline(stream, line)){
-            std::replace(line.begin(), line.end(), ',', ' ');
-            std::istringstream linestream(line);
-            //fill out the vector with values parsed from the line
-            while (linestream >> value)
-            {
-              parse.push_back(std::stoi(value));
+          if( parse.size() != _the_grid.size() )                              //  If sizes are different, there was an error during read
+            return false; //EXIT FOR FAILURE
+          else{
+            int traverse = 0;
+            for (auto i : _the_grid){                                         //  Traverse the grid and set a cell alive or death
+                  if(parse[traverse] == 0)
+                    i->set_life(false);
+                  else
+                    i->set_life(true);
+                  traverse++;
             }
+            return true;  //EXIT FOR SUCCESS
           }
         }
-        //Check if the parse was done correctly
-        if(!parse.empty()){
-          int traverse = 0;
-          for (auto i : _the_grid){
-            if(((i->_pos.x>=_first_x)&&(i->_pos.x<(_first_x+_cells_displayed_x)))&&((i->_pos.y>=_first_y)&&(i->_pos.y<(_first_y+_cells_displayed_y)))){
-                if(parse[traverse] == 0)
-                  i->set_life(false);
-                else
-                  i->set_life(true);
-                traverse++;
-            }
-          }
-        }
-        else  
-          std::cout<<"There was an error reading the file"<<std::endl;
-    */
-    //break;
-  //}
-  //if 1, fill the values for 1
+        else
+          return false;   //EXIT FOR FAILURE
 }
 
+//****************************************************//
+//*****           Store Grid Method             ******//
+//****************************************************//
 bool Grid::Store_Grid(int select){
   std::ofstream stream(kFilePath+std::to_string(select)+kFileExt);
-  if (stream.is_open()) {
+  if (stream.is_open()) {                                             //Check if the file could be opened
     for (auto i : _the_grid){
-      if(i->check_life())
+      if(i->check_life())                                             //Check life of each cell and store 1 or 0 acoordingly
         stream << "1";
       else
         stream << "0";
 
-      stream << ",";
+      stream << ",";                                                  //separate each "cell" with a comma
     }
     return true;
   }
-  else{
-    //std::cout<<"There was an error writing the file"<<std::endl;
-    return false;
-  }
+  else
+    return false;                                                     //Return false if there was an error
 }
 
 void Grid::Reset_Grid_Scope(){

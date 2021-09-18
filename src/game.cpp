@@ -9,35 +9,25 @@
 
 Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_grid(height_grid){
   //Creating actual grid and next grid, both with the same dimentions
-  //_actual_grid = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
-  //_next_grid   = new Grid(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
   _actual_grid = std::make_shared<Grid>(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
   _next_grid   = std::make_shared<Grid>(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
 }
 
 //****************************************************//
-//*****       Update cell wrapper Method        ******//
+//*****          Update a cell Method           ******//
 //****************************************************//
-void Game::Update_cells_wrapper(Game* game, Cell *i){
-//void Game::Update_cells_wrapper(Game* game, std::shared_ptr<Cell> i){
-  game->Update_cells(i);
-}
-
-//****************************************************//
-//*****            Update cell Method           ******//
-//****************************************************//
-void Game::Update_cells(Cell *i){  
+void Game::Update_cell(Cell *i){  
 //void Game::Update_cells(std::shared_ptr<Cell> i){
         int sum = _actual_grid->Count_Nhbr(i);              //  Count the number of neighbors the current cell has
         bool is_alive = false;
         bool new_live = false;
+
         //update value of next "point"
-std::unique_lock<std::mutex> lck (_mutex);
-        //accessing the array
-        //_mutex.lock();
-        is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();   // checking is current cell is alive
-        //_mutex.unlock();
-        lck.unlock();
+        //accessing the array. Access prottected
+            std::unique_lock<std::mutex> lck (_mutex);
+            is_alive = (_actual_grid->_the_grid)[i->_index]->check_life();   // checking is current cell is alive
+            lck.unlock();
+
         //conditions to game of life
         if(is_alive){                                         //  Conditions if the cell is currently alive
           if(sum<=1 || sum>=4){ new_live = false; }
@@ -52,69 +42,43 @@ std::unique_lock<std::mutex> lck (_mutex);
           else{ new_live = false; }
         }
 
-        //writing to array
-        //_mutex.lock();
-        lck.lock();
-        (_next_grid->_the_grid)[i->_index]->set_life(new_live);         //setting the value of the cell for the next cycle
-        //_mutex.unlock();
-        lck.unlock();
-
-        //possible reasons:
-        //data race, creating to many threads
+        //writing to array. Access protected
+            lck.lock();
+            (_next_grid->_the_grid)[i->_index]->set_life(new_live);         //setting the value of the cell for the next cycle
+            lck.unlock();
 }
-///
 
-void Game::Update_cells2(int start, int end){
+//****************************************************//
+//*****        Update several cells Method      ******//
+//****************************************************//
+void Game::Update_several_cells(int start, int end){
   for (int k = start; k<=end; k++){
-    Update_cells(_actual_grid->_the_grid[k]);
+    Update_cell(_actual_grid->_the_grid[k]);
   }
 }
 
-void Game::Update_bunch_wrapper(Game* game, int start, int end){
-//void Game::Update_cells_wrapper(Game* game, std::shared_ptr<Cell> i){
-  game->Update_cells2(start, end);
-
+//****************************************************//
+//*****   Update several cell wrapper Method    ******//
+//****************************************************//
+void Game::Update_several_wrapper(Game* game, int start, int end){
+  game->Update_several_cells(start, end);
 }
 
 //****************************************************//
 //*****         Update Next Grid Method         ******//
 //****************************************************//
 void Game::Update_next_grid(){
+      //Control multithreading execution
+      std::vector <std::thread> threads;
+
+      int total_cells = kNum_cells_x*kNum_cells_y;
       
-      std::vector <std::thread> threads;/////    Multithreading
-      /*
-      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 0, 64799));//////     Multithreading
-      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 64800, 129599));//////     Multithreading
-      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 129600, 194399));//////     Multithreading
-      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 194400, 259199));//////     Multithreading
-      */
-
-      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 0, 129599));//////     Multithreading
-      threads.push_back(std::thread(Game::Update_bunch_wrapper, this, 129600, 129599));//////     Multithreading
-
-          for (auto &t : threads){
-            t.join();
-          }
-          /*
-      //auto point = _next_grid->_the_grid;
-      int a = 0;
-      std::cout<<"Hey 1"<<std::endl;
-      std::vector <std::thread> threads;/////    Multithreading
-      for (auto i : _actual_grid->_the_grid){                       //Traverse trough the array updating the corresponging cell in the next grid
-
-            threads.push_back(std::thread(Game::Update_cells_wrapper, this, i));//////     Multithreading
-            //Update_cells(i);
-            std::cout<<"Thread "<< a++ <<std::endl;
+      threads.push_back(std::thread(Game::Update_several_wrapper, this, 0, (total_cells/2)-1));               //  Multithreading
+      threads.push_back(std::thread(Game::Update_several_wrapper, this, total_cells/2, total_cells-1));       //  Multithreading
+      
+      for (auto &t : threads){
+        t.join();
       }
-      std::cout<<"Hey 2"<<std::endl;
-
-        //Multithreading
-        
-          for (auto &t : threads){
-            t.join();
-          }
-       std::cout<<"Hey 3"<<std::endl; 
-       */
 }
 
 //****************************************************//
@@ -133,8 +97,6 @@ void Game::Run(Controller const &controller, Renderer &renderer){
     int frame_count = 0;
 
     Uint32 target_refresh = 1024;                  //Speed of grid update
-
-    //Grid* aux =  new Grid(0,0,0,0);               //  Aux grid for update
 
     std::shared_ptr<Grid> aux = std::make_shared<Grid>(0,0,0,0);
 
@@ -161,20 +123,18 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       if(go==true || step == true){
           if ((frame_end - start_timestamp >= target_refresh) || (go == false && step == true)) {      //update if time passed matches the refresh rate
 
-            
+            //If HandleInput Methos has capture a file read, skip the normal update method
             if(skip_update !=true)
               Update_next_grid();     //Update the next grid based on the current grid values
             else
-              skip_update = false;
+              skip_update = false;    //Reset Flag
 
             //Making the actual grid the nest grid by creating a temporary one
             //the memory form the axu grid is deleted afterwards
             
             aux =  _actual_grid;
             _actual_grid = _next_grid;
-            _next_grid = aux;
-            //aux = NULL;
-            
+            _next_grid = aux;            
 
             //New start time
             start_timestamp = frame_end;
@@ -194,5 +154,4 @@ void Game::Run(Controller const &controller, Renderer &renderer){
         SDL_Delay(target_frame - frame_duration);
       }
     }
-    //delete(aux);      //Delete aux grid
 }

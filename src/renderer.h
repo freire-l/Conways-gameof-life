@@ -15,23 +15,18 @@ class Renderer{
 
   ~Renderer();                                                                  //  Destructor
 
-  //void Render2(Grid* grid);                                                     //  Method that renders a grid
-  void Render2(std::shared_ptr <Grid> grid);                                                     //  Method that renders a grid
+  void Render2(std::shared_ptr <Grid> grid);                                    //  Method that renders a grid
 
-
-  //void DrawCell (Cell *i, Grid *grid);                                          //  Method that renders a specific Cell
-  void DrawCell (Cell *i, std::shared_ptr <Grid> grid);                                          //  Method that renders a specific Cell
-  //void DrawCell (std::shared_ptr <Cell> cell, Grid *grid);                                          //  Method that renders a specific Cell
+  void DrawCell (Cell *i, std::shared_ptr <Grid> grid);                         //  Method that renders a specific Cell
 
   void UpdateWindowTitle(int score, int fps);
 
  private:
-  SDL_Window *sdl_window;     //Pointer to the sdl window to be created
-  SDL_Renderer *sdl_renderer; //Pointer to be renderer to be created
-  //SDL_Surface *sdl_surface;
+  SDL_Window *sdl_window;                                                       //  Pointer to the sdl window to be created
+  SDL_Renderer *sdl_renderer;                                                   //  Pointer to be renderer to be created
 
-  const std::size_t screen_width;      //width of the screen in pixels
-  const std::size_t screen_height;     //height of the screen in pixels
+  const std::size_t screen_width;                                               //  width of the screen in pixels
+  const std::size_t screen_height;                                              //  height of the screen in pixels
 
 };
 

@@ -4,37 +4,39 @@
 #include "SDL.h"
 #include "snake.h"
 
-
+//****************************************************//
+//*****        File Reader/Writer Method        ******//
+//****************************************************//
 void Controller::ReadOrWrite(int file_number, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, bool &step, bool &skip_update) const{
 
-  const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
-
+  const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );               //  Get the state of the keyboard
+  //  If right shift is pressed, we are storing th grid in a file
+  //  Otherwise, we are loading a file into the grid
+  //  we use the file_number variable to build the name of the file
+  //  eg. if file_number is 1, file name is "figure1.txt"
   if(currentKeyStates[SDL_SCANCODE_RSHIFT]){
-    std::cout<<"****Storing****"<<std::endl;
-    if(grid->Store_Grid(file_number))
-      std::cout<<"Storing Successful"<<std::endl;
+    PrintToConsole("Storing");
+    if(grid->Store_Grid(file_number))                                               //  Check result of store Grid method
+      PrintToConsole("Storing Successful to slot "+std::to_string(file_number));
     else
-      std::cout<<"There was an error writing the file"<<std::endl;
+      PrintToConsole("There was an error writing the file");
   }
   else{
-    std::cout<<"****Reading****"<<std::endl;
-    if(next_grid->Fill_Grid(file_number)){
+    PrintToConsole("Reading");
+    if(next_grid->Fill_Grid(file_number)){                                          //  Check result of Fill Grid method
       next_grid->Reset_Grid_Scope();
-      step = true;
-      skip_update = true;
-      std::cout<<"Reading Successful"<<std::endl;
+      step = true;                                                                  //  Make sure we are taking a step to the grid can be refreshed
+      skip_update = true;                                                           //  Make sure we skip the normal grid updating method
+      PrintToConsole("Reading Successful from slot "+std::to_string(file_number));
     }
     else
-      std::cout<<"There was an error reading the file"<<std::endl;
-    
+      PrintToConsole("There was an error reading the file");    
   }
 }
 
 //****************************************************//
 //*****     Controlled Handle Input Method      ******//
 //****************************************************//
-
-//void Controller::HandleInput2(bool &running, Grid* grid, Uint32 &target_refresh, bool &go, bool &step) const{   //Take in control references
 void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, Uint32 &target_refresh, bool &go, bool &step, bool &skip_update) const{   //Take in control references
   SDL_Event e;
   //Limits of grid update speed
@@ -93,7 +95,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
                                                                       // is bellow the limit
 
               //Variables that check wether the current cells displayed correspond to one of the special cases
-              // these is important to take in consideration because in these cases the zoom of needs to be done
+              // these are important to take in consideration because in those cases the zoom out/in needs to be done
               // differently for the grid proportions to be maintained
 
               bool top_left = (grid->_first_x==0)&&(grid->_first_y==0); 
@@ -165,8 +167,12 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
               step = true;
               skip_update = true;
             }
+            else
+              PrintToConsole("Game should be paused to perform this action");
           break;
 
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 1
           case SDLK_1: 
             //Check if the game is paused
             if(go == false){ 
@@ -176,6 +182,8 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
               PrintToConsole("Game should be paused to perform this action");
           break;
 
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 2
           case SDLK_2: 
             //Check if the game is paused
             if(go == false){ 
@@ -184,7 +192,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 3
           case SDLK_3: 
             //Check if the game is paused
             if(go == false){ 
@@ -193,7 +203,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+           
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 4 
           case SDLK_4: 
             //Check if the game is paused
             if(go == false){ 
@@ -202,7 +214,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 5  
           case SDLK_5: 
             //Check if the game is paused
             if(go == false){ 
@@ -211,7 +225,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 6  
           case SDLK_6: 
             //Check if the game is paused
             if(go == false){ 
@@ -220,7 +236,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 7  
           case SDLK_7: 
             //Check if the game is paused
             if(go == false){ 
@@ -229,7 +247,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 8  
           case SDLK_8: 
             //Check if the game is paused
             if(go == false){ 
@@ -238,7 +258,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 9  
           case SDLK_9: 
             //Check if the game is paused
             if(go == false){ 
@@ -247,7 +269,9 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
             else
               PrintToConsole("Game should be paused to perform this action");
           break;
-  
+          
+          //***************************                     //If the number is pressed, ReadOrWrite with check if shift is also pressed
+                                                            //So it can be decided if we are reading or storing to slot 0  
           case SDLK_0: 
             //Check if the game is paused
             if(go == false){ 

@@ -23,15 +23,15 @@ class Cell{
 
         bool check_life();                                                           // Cell live getter
 
-        static int _width;
-        static int _height;
+        static int _width;                                                          //  Width of the cell class, in pixels
+        static int _height;                                                         //  Height of the cell class, in pixels
 
-        int _index;
+        int _index;                                                                 //  Corresponding index of the cell object in the Grid array
         
 
     private:
-        SDL_Point _pos;        //position
-        bool _is_alive;
+    SDL_Point _pos;                                                                 //  Position
+        bool _is_alive;                                                             //  Variable that holds the life of the cell
 
         friend class Renderer;
         friend class Grid;

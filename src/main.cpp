@@ -31,18 +31,8 @@
 
     //Coordinate of the first cell to be displayed, on the upper left corner
 
-    //int Grid::_first_x = 80-1;
-    //int Grid::_first_y = 40-1;
-
-    //int Grid::_first_x = 240-1;
-    //int Grid::_first_y = 120-1;
-
     int Grid::_first_x = (kNum_cells_x/3)-1; //240
     int Grid::_first_y = (kNum_cells_y/3)-1; //120
-
-    //int Grid::_first_x = 720-1;
-    //int Grid::_first_y = 360-1;
-
 
 //main compatible with multiple SDL platforms
 int main( int argc, char* args[] ) {
