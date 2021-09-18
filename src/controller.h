@@ -16,7 +16,9 @@ class Controller {
                                                                                                           //  all the corresponding variables that
                                                                                                           //  are passed by reference to it 
 
-    void HandleInput2(bool &running, std::shared_ptr <Grid> act_grid, std::shared_ptr <Grid> next_grid, Uint32 &target_refresh, bool &go, bool &step, bool &skip_update) const;       //  Method that handles the user input and updates
+    void HandleInput2(bool &running, std::shared_ptr <Grid> act_grid, std::shared_ptr <Grid> next_grid, Uint32 &target_refresh, bool &go, bool &step, bool &skip_update)const;  //  Method that handles the user input and updates
+
+    void ReadOrWrite(int file_number, std::shared_ptr <Grid> act_grid, std::shared_ptr <Grid> next_grid, bool &step, bool &skip_update) const;
 
 };
 

@@ -978,7 +978,6 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o: ../src/game.cpp \
   ../src/cell.h \
   ../src/grid.h \
   ../src/utils.h \
-  ../src/renderer.h \
   /usr/include/c++/9/iostream \
   /usr/include/c++/9/ostream \
   /usr/include/c++/9/ios \
@@ -999,7 +998,8 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o: ../src/game.cpp \
   /usr/include/c++/9/bits/basic_ios.tcc \
   /usr/include/c++/9/bits/ostream.tcc \
   /usr/include/c++/9/istream \
-  /usr/include/c++/9/bits/istream.tcc
+  /usr/include/c++/9/bits/istream.tcc \
+  ../src/renderer.h
 
 CMakeFiles/Conway_test.dir/src/grid.cpp.o: ../src/grid.cpp \
   /usr/include/stdc-predef.h \
@@ -1211,6 +1211,7 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o: ../src/grid.cpp \
   /usr/include/c++/9/bits/stl_heap.h \
   /usr/include/c++/9/bits/uniform_int_dist.h \
   /usr/include/c++/9/limits \
+  ../src/utils.h \
   /usr/include/SDL2/SDL.h \
   /usr/include/SDL2/SDL_main.h \
   /usr/include/SDL2/SDL_stdinc.h \
@@ -1347,8 +1348,7 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o: ../src/grid.cpp \
   /usr/include/x86_64-linux-gnu/c++/9/bits/opt_random.h \
   /usr/include/c++/9/bits/random.tcc \
   /usr/include/c++/9/numeric \
-  /usr/include/c++/9/bits/stl_numeric.h \
-  ../src/utils.h
+  /usr/include/c++/9/bits/stl_numeric.h
 
 CMakeFiles/Conway_test.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/stdc-predef.h \

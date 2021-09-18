@@ -981,7 +981,6 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o
  /home/luisf/workspace/Conways_Game_of_Life/src/cell.h
  /home/luisf/workspace/Conways_Game_of_Life/src/grid.h
  /home/luisf/workspace/Conways_Game_of_Life/src/utils.h
- /home/luisf/workspace/Conways_Game_of_Life/src/renderer.h
  /usr/include/c++/9/iostream
  /usr/include/c++/9/ostream
  /usr/include/c++/9/ios
@@ -1003,6 +1002,7 @@ CMakeFiles/Conway_test.dir/src/game.cpp.o
  /usr/include/c++/9/bits/ostream.tcc
  /usr/include/c++/9/istream
  /usr/include/c++/9/bits/istream.tcc
+ /home/luisf/workspace/Conways_Game_of_Life/src/renderer.h
 
 CMakeFiles/Conway_test.dir/src/grid.cpp.o
  /home/luisf/workspace/Conways_Game_of_Life/src/grid.cpp
@@ -1215,6 +1215,7 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o
  /usr/include/c++/9/bits/stl_heap.h
  /usr/include/c++/9/bits/uniform_int_dist.h
  /usr/include/c++/9/limits
+ /home/luisf/workspace/Conways_Game_of_Life/src/utils.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_main.h
  /usr/include/SDL2/SDL_stdinc.h
@@ -1352,7 +1353,6 @@ CMakeFiles/Conway_test.dir/src/grid.cpp.o
  /usr/include/c++/9/bits/random.tcc
  /usr/include/c++/9/numeric
  /usr/include/c++/9/bits/stl_numeric.h
- /home/luisf/workspace/Conways_Game_of_Life/src/utils.h
 
 CMakeFiles/Conway_test.dir/src/main.cpp.o
  /home/luisf/workspace/Conways_Game_of_Life/src/main.cpp

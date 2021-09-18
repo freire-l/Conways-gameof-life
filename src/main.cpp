@@ -5,6 +5,12 @@
 #include "game.h"
 #include "renderer.h"
 
+  void PrintToConsole(std::string message){
+    std::cout<<"***************************************************"<<std::endl;
+    std::cout<<"   "<<message<<"   "<<std::endl;
+    std::cout<<"***************************************************"<<std::endl<<std::endl;
+  }
+
 //Initialize Static Variables
 
     //Initial height and width of cells to be displayed

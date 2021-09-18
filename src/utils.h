@@ -1,5 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
+
+#include <string>
+#include <iostream>
 /*
 
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
@@ -21,7 +24,11 @@
   constexpr int kNum_cells_x{720};
   constexpr int kNum_cells_y{360};
 
+  const std::string kFilePath{"../src/figure"};
+  const std::string kFileExt{".txt"};
   //constexpr int _num_cells_x{2160};
   //constexpr int _num_cells_y{1080};
+
+  void PrintToConsole(std::string message);
 
 #endif

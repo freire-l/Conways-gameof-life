@@ -1,7 +1,34 @@
 #include "controller.h"
+#include "utils.h"
 #include <iostream>
 #include "SDL.h"
 #include "snake.h"
+
+
+void Controller::ReadOrWrite(int file_number, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, bool &step, bool &skip_update) const{
+
+  const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+
+  if(currentKeyStates[SDL_SCANCODE_RSHIFT]){
+    std::cout<<"****Storing****"<<std::endl;
+    if(grid->Store_Grid(file_number))
+      std::cout<<"Storing Successful"<<std::endl;
+    else
+      std::cout<<"There was an error writing the file"<<std::endl;
+  }
+  else{
+    std::cout<<"****Reading****"<<std::endl;
+    if(next_grid->Fill_Grid(file_number)){
+      next_grid->Reset_Grid_Scope();
+      step = true;
+      skip_update = true;
+      std::cout<<"Reading Successful"<<std::endl;
+    }
+    else
+      std::cout<<"There was an error reading the file"<<std::endl;
+    
+  }
+}
 
 //****************************************************//
 //*****     Controlled Handle Input Method      ******//
@@ -132,23 +159,104 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
 
           //***************************
           case SDLK_c:  
+            //Check if the game is paused
             if(go == false){
-              next_grid->Fill_Grid(0);
+              next_grid->Clear_Grid();
               step = true;
               skip_update = true;
             }
           break;
 
           case SDLK_1: 
+            //Check if the game is paused
             if(go == false){ 
-              std::cout<<"Number 1 pressed"<<std::endl;
-              step = true;
-              skip_update = true;
-              next_grid->Reset_Grid_Scope();
-              next_grid->Fill_Grid(1);
+              ReadOrWrite(1, grid, next_grid, step, skip_update);
             }
+            else
+              PrintToConsole("Game should be paused to perform this action");
           break;
 
+          case SDLK_2: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(2, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+
+          case SDLK_3: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(3, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_4: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(4, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_5: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(5, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_6: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(6, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_7: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(7, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_8: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(8, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_9: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(9, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+  
+          case SDLK_0: 
+            //Check if the game is paused
+            if(go == false){ 
+              ReadOrWrite(0, grid, next_grid, step, skip_update);
+            }
+            else
+              PrintToConsole("Game should be paused to perform this action");
+          break;
+           
           case SDLK_RIGHT:                                                              //  right arrow key pans the grid to the right
             if(  (grid->_first_x + grid->_cells_displayed_x ) <  grid->_num_cells_x){   // Check if we are not already in the right limit of the grid
               grid->_first_x++;

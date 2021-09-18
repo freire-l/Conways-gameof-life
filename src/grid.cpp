@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include "utils.h"
 #include "SDL.h"
 #include "grid.h"
 
@@ -57,17 +58,61 @@ Grid &Grid::operator=(const Grid &source){
   _height_grid= source._height_grid;
   return *this;
 }
-void Grid::Fill_Grid(int select){
+
+void Grid::Clear_Grid(){
+  for (auto i : _the_grid){
+    i->set_life(false);
+  }
+}
+
+bool Grid::Fill_Grid(int select){
   std::cout << "***** Filling Grid ********"<<std::endl;
   //fill values for clearing
-  switch (select){
-    case 0:
+  //switch (select){
+    //case 0:
+    /*
+    if(select == -1){
       for (auto i : _the_grid){
         i->set_life(false);
       }
-    break;
+    }
+    */
+    //break;
+    //else{
+    //case 1:
+        std::string line;
+        std::vector <int> parse;
+        std::string value;
 
-    case 1:
+        std::ifstream stream(kFilePath+std::to_string(select)+kFileExt);
+        if (stream.is_open()) {
+          while(std::getline(stream, line)){
+            std::replace(line.begin(), line.end(), ',', ' ');
+            std::istringstream linestream(line);
+            //fill out the vector with values parsed from the line
+            while (linestream >> value)
+            {
+              parse.push_back(std::stoi(value));
+            }
+          }
+
+          //Check if the parse was done correctly
+          int traverse = 0;
+          for (auto i : _the_grid){
+                if(parse[traverse] == 0)
+                  i->set_life(false);
+                else
+                  i->set_life(true);
+                traverse++;
+          }
+          return true;
+        }
+        else{
+          //std::cout<<"There was an error reading the file"<<std::endl;
+          return false;
+        }
+    //}
+    /*
         std::string line;
         std::vector <int> parse;
         std::string value;
@@ -84,21 +129,44 @@ void Grid::Fill_Grid(int select){
             }
           }
         }
-
-        int traverse = 0;
-        for (auto i : _the_grid){
-          //std::cout << "***** Filling Grid  4  ********"<<std::endl;
-          if(((i->_pos.x>=_first_x)&&(i->_pos.x<(_first_x+_cells_displayed_x)))&&((i->_pos.y>=_first_y)&&(i->_pos.y<(_first_y+_cells_displayed_y)))){
-              if(parse[traverse] == 0)
-                i->set_life(false);
-              else
-                i->set_life(true);
-              traverse++;
+        //Check if the parse was done correctly
+        if(!parse.empty()){
+          int traverse = 0;
+          for (auto i : _the_grid){
+            if(((i->_pos.x>=_first_x)&&(i->_pos.x<(_first_x+_cells_displayed_x)))&&((i->_pos.y>=_first_y)&&(i->_pos.y<(_first_y+_cells_displayed_y)))){
+                if(parse[traverse] == 0)
+                  i->set_life(false);
+                else
+                  i->set_life(true);
+                traverse++;
+            }
           }
         }
-    break;
-  }
+        else  
+          std::cout<<"There was an error reading the file"<<std::endl;
+    */
+    //break;
+  //}
   //if 1, fill the values for 1
+}
+
+bool Grid::Store_Grid(int select){
+  std::ofstream stream(kFilePath+std::to_string(select)+kFileExt);
+  if (stream.is_open()) {
+    for (auto i : _the_grid){
+      if(i->check_life())
+        stream << "1";
+      else
+        stream << "0";
+
+      stream << ",";
+    }
+    return true;
+  }
+  else{
+    //std::cout<<"There was an error writing the file"<<std::endl;
+    return false;
+  }
 }
 
 void Grid::Reset_Grid_Scope(){

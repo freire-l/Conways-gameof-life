@@ -20,7 +20,11 @@ class Grid{
 
         Grid &operator=(const Grid &source);
 
-        void Fill_Grid(int select);
+        bool Fill_Grid(int select);
+
+        void Clear_Grid();
+
+        bool Store_Grid(int select);
 
         void Reset_Grid_Scope();
         
