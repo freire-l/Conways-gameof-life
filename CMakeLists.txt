@@ -17,6 +17,6 @@ find_package(Threads REQUIRED)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} src)
 
-add_executable(Game_of_life src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/snake.cpp src/grid.cpp src/cell.cpp)
+add_executable(Game_of_life src/main.cpp src/game.cpp src/controller.cpp src/renderer.cpp src/grid.cpp src/cell.cpp)
 string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
 target_link_libraries(Game_of_life ${SDL2_LIBRARIES} Threads::Threads)

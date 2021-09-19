@@ -2,7 +2,6 @@
 #include "utils.h"
 #include <iostream>
 #include "SDL.h"
-#include "snake.h"
 
 //****************************************************//
 //*****        File Reader/Writer Method        ******//

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Game_of_life.dir/src/main.cpp.o CMakeFiles/Game_of_life.dir/src/game.cpp.o CMakeFiles/Game_of_life.dir/src/controller.cpp.o CMakeFiles/Game_of_life.dir/src/renderer.cpp.o CMakeFiles/Game_of_life.dir/src/grid.cpp.o CMakeFiles/Game_of_life.dir/src/cell.cpp.o -o Game_of_life  -lSDL2 -pthread 

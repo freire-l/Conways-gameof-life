@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "SDL.h"
-#include "snake.h"
 #include "cell.h"
 #include "grid.h"
 

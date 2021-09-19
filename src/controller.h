@@ -2,7 +2,6 @@
 #define CONTROLLER_H
 
 #include <memory>
-#include "snake.h"
 #include "cell.h"
 #include "grid.h"
 
