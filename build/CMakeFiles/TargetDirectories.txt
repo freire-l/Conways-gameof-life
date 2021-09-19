@@ -1,3 +1,0 @@
-/home/luisf/workspace/Conways_Game_of_Life/build/CMakeFiles/rebuild_cache.dir
-/home/luisf/workspace/Conways_Game_of_Life/build/CMakeFiles/edit_cache.dir
-/home/luisf/workspace/Conways_Game_of_Life/build/CMakeFiles/Game_of_life.dir
