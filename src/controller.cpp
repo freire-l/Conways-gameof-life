@@ -7,7 +7,7 @@
 //****************************************************//
 //*****        File Reader/Writer Method        ******//
 //****************************************************//
-void Controller::ReadOrWrite(int file_number, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, bool &step, bool &skip_update) const{
+void Controller::Read_Or_Write(int file_number, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, bool &step, bool &skip_update) const{
 
   const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );               //  Get the state of the keyboard
   //  If right shift is pressed, we are storing th grid in a file
@@ -37,7 +37,7 @@ void Controller::ReadOrWrite(int file_number, std::shared_ptr <Grid> grid, std::
 //****************************************************//
 //*****     Controlled Handle Input Method      ******//
 //****************************************************//
-void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, Uint32 &target_refresh, bool &go, bool &step, bool &skip_update) const{   //Take in control references
+void Controller::Handle_Input(bool &running, std::shared_ptr <Grid> grid, std::shared_ptr <Grid> next_grid, Uint32 &target_refresh, bool &go, bool &step, bool &skip_update) const{   //Take in control references
   SDL_Event e;
   //Limits of grid update speed
   Uint32 lower_limit = 32;
@@ -176,7 +176,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_1: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(1, grid, next_grid, step, skip_update);
+              Read_Or_Write(1, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -187,7 +187,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_2: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(2, grid, next_grid, step, skip_update);
+              Read_Or_Write(2, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -198,7 +198,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_3: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(3, grid, next_grid, step, skip_update);
+              Read_Or_Write(3, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -209,7 +209,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_4: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(4, grid, next_grid, step, skip_update);
+              Read_Or_Write(4, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -220,7 +220,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_5: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(5, grid, next_grid, step, skip_update);
+              Read_Or_Write(5, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -231,7 +231,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_6: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(6, grid, next_grid, step, skip_update);
+              Read_Or_Write(6, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -242,7 +242,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_7: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(7, grid, next_grid, step, skip_update);
+              Read_Or_Write(7, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -253,7 +253,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_8: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(8, grid, next_grid, step, skip_update);
+              Read_Or_Write(8, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -264,7 +264,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_9: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(9, grid, next_grid, step, skip_update);
+              Read_Or_Write(9, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");
@@ -275,7 +275,7 @@ void Controller::HandleInput2(bool &running, std::shared_ptr <Grid> grid, std::s
           case SDLK_0: 
             //Check if the game is paused
             if(go == false){ 
-              ReadOrWrite(0, grid, next_grid, step, skip_update);
+              Read_Or_Write(0, grid, next_grid, step, skip_update);
             }
             else
               PrintToConsole("Game should be paused to perform this action");

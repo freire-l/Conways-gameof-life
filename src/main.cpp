@@ -37,6 +37,8 @@
 //main compatible with multiple SDL platforms
 int main( int argc, char* args[] ) {
 
+  PrintToConsole("Starting Game of Life, a tribute to John Conway"); 
+
   Renderer renderer(kScreen_width, kScreen_height);
 
   Controller controller;
@@ -45,6 +47,6 @@ int main( int argc, char* args[] ) {
 
   game.Run(controller, renderer);
 
-  std::cout << "Game has terminated successfully!\n";
+  PrintToConsole("Game has terminated successfully!"); 
   return 0;
 }

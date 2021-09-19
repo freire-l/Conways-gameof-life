@@ -11,6 +11,8 @@ Game::Game(int width_grid, int height_grid): _width_grid(width_grid), _height_gr
   //Creating actual grid and next grid, both with the same dimentions
   _actual_grid = std::make_shared<Grid>(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
   _next_grid   = std::make_shared<Grid>(kNum_cells_x, kNum_cells_y, _width_grid, _height_grid);
+
+  _actual_grid->Fill_Grid(1);                               //  Sart with the first figure
 }
 
 //****************************************************//
@@ -107,7 +109,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       // Game main loop Input, Update, Render - the main game loop.
 
       //**** Input   *********
-      controller.HandleInput2(is_running, _actual_grid, _next_grid, target_refresh, go, step, skip_update);     //Method takes references to all game drivers, so they can be 
+      controller.Handle_Input(is_running, _actual_grid, _next_grid, target_refresh, go, step, skip_update);     //Method takes references to all game drivers, so they can be 
                                                                                        // affected by the input
 
       frame_end = SDL_GetTicks();            //Get current time
@@ -147,7 +149,7 @@ void Game::Run(Controller const &controller, Renderer &renderer){
       }
 
       //******   Render   *********
-      renderer.Render2(_actual_grid);
+      renderer.Render(_actual_grid);
 
       //Stall execution if we are bellow the target farme duration
       if (frame_duration < target_frame) {

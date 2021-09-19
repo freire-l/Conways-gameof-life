@@ -46,7 +46,7 @@ Renderer::~Renderer() {
 //****************************************************//
 //*****            Draw Cell Method             ******//
 //****************************************************//
-void Renderer::DrawCell (Cell *cell, std::shared_ptr <Grid> grid){
+void Renderer::Draw_Cell (Cell *cell, std::shared_ptr <Grid> grid){
 
     int first_x = grid ->_first_x;
     int first_y = grid ->_first_y;
@@ -79,7 +79,7 @@ void Renderer::DrawCell (Cell *cell, std::shared_ptr <Grid> grid){
 //****************************************************//
 //*****               Render Method             ******//
 //****************************************************//
-void Renderer::Render2(std::shared_ptr <Grid> grid){
+void Renderer::Render(std::shared_ptr <Grid> grid){
 
           //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); //BLACK
           //SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x0FF, 0x00, 0xFF); //YELLOW
@@ -94,14 +94,9 @@ void Renderer::Render2(std::shared_ptr <Grid> grid){
   //Traverse the grid array, only display cells that are inside the corrently zoomed area    
   for (auto i : grid->_the_grid){
     if(((i->_pos.x>=grid->_first_x)&&(i->_pos.x<(grid->_first_x+grid->_cells_displayed_x)))&&((i->_pos.y>=grid->_first_y)&&(i->_pos.y<(grid->_first_y+grid->_cells_displayed_y)))){
-      DrawCell( i, grid);         //Render a Cell
+      Draw_Cell( i, grid);         //Render a Cell
     }
   }
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
-}
-
-void Renderer::UpdateWindowTitle(int score, int fps) {
-  std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
-  SDL_SetWindowTitle(sdl_window, title.c_str());
 }

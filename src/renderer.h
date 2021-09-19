@@ -15,11 +15,9 @@ class Renderer{
 
   ~Renderer();                                                                  //  Destructor
 
-  void Render2(std::shared_ptr <Grid> grid);                                    //  Method that renders a grid
+  void Render(std::shared_ptr <Grid> grid);                                    //  Method that renders a grid
 
-  void DrawCell (Cell *i, std::shared_ptr <Grid> grid);                         //  Method that renders a specific Cell
-
-  void UpdateWindowTitle(int score, int fps);
+  void Draw_Cell (Cell *i, std::shared_ptr <Grid> grid);                         //  Method that renders a specific Cell
 
  private:
   SDL_Window *sdl_window;                                                       //  Pointer to the sdl window to be created

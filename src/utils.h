@@ -26,7 +26,7 @@
   //constexpr int _num_cells_y{1080};                       //  If you manage to run it at a decent speed feel free to send me a pr :)
   */
 
-  const std::string kFilePath{"../src/figure"};             //  Helper strings for constructing file paths
+  const std::string kFilePath{"../Figures/figure"};             //  Helper strings for constructing file paths
   const std::string kFileExt{".txt"};
 
   void PrintToConsole(std::string message);                 //  Helper Functions for formating messages to the console
