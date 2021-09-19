@@ -1,11 +1,11 @@
 # Conway's Game of Life
 
-Implementation of [Conway's Game of life] (https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as imagined by John Conway.
+Implementation of [Conway's Game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as imagined by John Conway.
 
   *Disclaimer: Game of life is supposedly run on an infinite Grid
    The Grid in this program is not infinite, but everything else works the same way
 
-The code for this repo was inspired by [this] (https://github.com/udacity/CppND-Capstone-Snake-Game) Udacity starter code 
+The code for this repo was inspired by [this](https://github.com/udacity/CppND-Capstone-Snake-Game) Udacity starter code 
 
 ![](video.gif)
 
