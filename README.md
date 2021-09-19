@@ -7,7 +7,7 @@ Implementation of [Conway's Game of life] (https://en.wikipedia.org/wiki/Conway%
 
 The code for this repo was inspired by [this] (https://github.com/udacity/CppND-Capstone-Snake-Game) Udacity starter code 
 
-<img src="video.gif"/>
+![](video.gif)
 
 This program allows you to simulate cellular automatas within Conway's Defined Rules.
 
